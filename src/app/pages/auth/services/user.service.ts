@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
-import { ResponseMail } from '../../../models/response-mail';
+import {  catchError, Observable, of } from 'rxjs';
+import { ResponseMail } from '../interfaces/response-mail';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../../enviorments/enviorment';
 @Injectable({
@@ -16,6 +16,13 @@ export class UserService {
     .get<ResponseMail>(`${environment.baseUrl}/api/login/login`, {
       params : queryParams
     });
+  }
+
+  public register(registro : ResponseMail) : Observable<ResponseMail>{
+    return this.httpClient.post<ResponseMail>(`${environment.baseUrl}/api/login/create`, registro)
+    .pipe(catchError(error =>  {
+      return of(error.error as ResponseMail);
+    }));
   }
 
 }

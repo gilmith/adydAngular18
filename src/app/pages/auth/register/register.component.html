@@ -1,15 +1,11 @@
-<header class="container-fluid  d-flex justify-content-center">
-    <img  src="../../../../assets/logos/adydlogo.png" alt="logoAdyd"/>
+<header class="container-fluid d-flex justify-content-center">
+    <img  class="img-fluid" src="../../../../assets/logos/adydlogo.png" alt="logoAdyd"/>
 </header>
-<main class="container mt-5">
+<main class="container mt-5 d-flex justify-content-center">
     <form (ngSubmit) ="onSend()" [formGroup]="registerForm">
     <div class="row mt-4" id="main">
-        <div class="col-sm-12 col-md-6">
-            <label for="inputUsuario"class="form-label">Usuario</label>
-            <input type="text"class="form-control" id="inputUsuario" formControlName="usuario"/>
-        </div>
-        <div class="col-sm-12 col-md-6">
-            <label for="inputMail"class="form-label">mail</label>
+        <div class="col-sm-12">
+            <label for="inputMail"class="form-label">mail/username</label>
             <input type="mail"class="form-control" id="inputMail" formControlName="email" [ngClass]="{
                 'is-valid':
                 registerForm.controls['email'].valid &&
@@ -25,28 +21,21 @@
     <div class="row mt-4">
         <div class="col-sm-12 col-md-6">
             <label for="inputPassword"class="form-label">password</label>
-            <input type="password"class="form-control" id="inputPassword" formControlName="password"/>
+            <br>
+            <span class="text-danger">La password tiene que contener numeros y letras mayusculas/minusculas</span>
+            <input type="password" class="form-control" id="inputPassword" formControlName="password"/>
         </div>
-        <div class="col-sm-12 col-md-6">
-            <label for="inputConfirm"class="form-label">Confirma la password</label>
-            <input type="password"class="form-control" id="inputConfirm" formControlName="confirmPassword"/>
+        <div class="col-sm-12 col-md-6 mt-4">
+            <label for="inputConfirm"class="form-label">Confirma la password</label>            
+            <input type="password" class="form-control" id="inputConfirm" formControlName="confirmPassword"/>
         </div>
     </div>
     <div class="row mt-4">
         <div class="col-12 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="this.disabled">Registrar</button>
         </div>
     </div>
-        <div #toast class="toast position-fixed bottom-0 start-50 translate-middle-x p-3"
-         role="alert">
-          <div class="toast-header">
-            <strong class="me-auto">correo ya registrado</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-          <div class="toast-body">
-            Correo ya resgistrado, <a class="text-decoration-none link-primary" routerLink="../forgot">recupera contraseña</a>
-          </div>
-        </div>
+
     
     </form>
 
