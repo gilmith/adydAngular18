@@ -6,11 +6,12 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ToastService } from './services/toastService/toast.service';
 import { spinnerInterceptor } from './shared/interceptors/spinner.interceptor';
 import { headerInterceptor } from './shared/interceptors/header-interceptor.interceptor';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
     provideHttpClient( withInterceptors([headerInterceptor, spinnerInterceptor])),
-    ToastService
+    ToastService, provideAnimationsAsync()
   ]
 };

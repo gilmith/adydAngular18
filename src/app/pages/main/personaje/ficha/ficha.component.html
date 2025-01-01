@@ -1,1 +1,45 @@
-<p>ficha works!</p>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSteps">
+                <ul class="navbar-nav w-100 d-flex justify-content-between">
+                  <li class="nav-item">
+                    <a class="nav-link active" [ngClass]="" aria-current="page" href="#">Tiradas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" [ngClass]="" href="#">Raza</a>
+                  </li>                 
+                  <li class="nav-item">
+                    <a class="nav-link disabled" [ngClass]="" aria-disabled="true">Categoria</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" [ngClass]="" aria-disabled="true">Alineamiento</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" [ngClass]="" aria-disabled="true">Datos Jugador</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" [ngClass]="" aria-disabled="true">Hechizos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" [ngClass]="" aria-disabled="true">Guardar</a>
+                  </li>
+                </ul>                
+              </div>
+            </div>       
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                @if(this.step == 0){
+                  <app-tiradas [personaje]="this.personaje" (valorEmmit)="this.actualizaPersonaje($event)"></app-tiradas>
+                }
+                @if(this.showPrevious){
+                    <button type="submit" class="btn btn-primary">anterior</button>
+                }
+                <button type="submit" class="btn btn-primary">siguiente</button>
+            </div>
+        </div>
+    </div>
+
+</div>
