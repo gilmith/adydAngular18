@@ -1,0 +1,79 @@
+<header class="container-fluid  d-flex justify-content-center">
+      <img class="img-fluid"  src="../../../../assets/logos/adydlogo.png" alt="logoAdyd"/>
+</header>
+<main class="container-fluid">
+    <div id="main" class="row">
+      <div class="col-sm-12 col-md-6">
+        <form [formGroup]="loginFormGroup" (ngSubmit)="onLogin()" class="form-control">
+          <div class="row">
+            <div class="col mt-4">
+              <h1>Login with</h1>
+              <div>
+                <p>aqui el google</p>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12 form-input ms-4 me-4">
+                <label for="email" class="form-label">usuario</label>
+                <input type="text" class="form-control" [ngClass]="{
+                    'is-valid':
+                      loginFormGroup.controls['email'].valid &&
+                      (loginFormGroup.controls['email'].touched ||
+                        loginFormGroup.controls['email'].dirty),
+                    'is-invalid':
+                      loginFormGroup.controls['email'].invalid &&
+                      (loginFormGroup.controls['email'].touched ||
+                        loginFormGroup.controls['email'].dirty)
+                  }"
+                  id="email"
+                  formControlName="email"
+                />
+                @if(loginFormGroup.controls['email'].invalid &&
+                (loginFormGroup.controls['email'].touched ||
+                loginFormGroup.controls['email'].dirty)){
+                <div class="invalid-feedback">Formato de email incorrecto</div>
+                }
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col form-input ms-4 me-4">
+                <label for="password" class="form-label">password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  formControlName="password"
+                  [ngClass]="{
+                    'is-valid':
+                      loginFormGroup.controls['password'].valid &&
+                      (loginFormGroup.controls['password'].touched ||
+                        loginFormGroup.controls['password'].dirty),
+                    'is-invalid':
+                      loginFormGroup.controls['password'].invalid &&
+                      (loginFormGroup.controls['password'].touched ||
+                        loginFormGroup.controls['password'].dirty)
+                  }"
+                />
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col ms-4 me-4 d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-md-6 d-flex justify-content-center">
+                <a class="text-decoration-none link-primary" routerLink="register" >¿No tienes usuario?</a>
+              </div>
+              <div class="col-md-6 d-flex justify-content-center">
+                <a class="text-decoration-none link-danger" routerLink="forgot">¿Olvidaste la password?</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6 d-sm-none d-md-block" id="imagenFicha">
+        <img src="../../../../assets/fichaAdyd.jpg"  alt="fichaAdyd" class="img-fuid" />
+      </div>
+    </div>
+</main>

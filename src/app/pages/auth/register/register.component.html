@@ -1,0 +1,51 @@
+<header class="container-fluid d-flex justify-content-center">
+    <img  class="img-fluid" src="../../../../assets/logos/adydlogo.png" alt="logoAdyd"/>
+</header>
+<main class="container mt-5 d-flex justify-content-center">
+    @if(!clicked){
+    <form (ngSubmit) ="onSend()" [formGroup]="registerForm">
+    <div class="row mt-4" id="main">
+        <div class="col-sm-12">
+            <label for="inputMail"class="form-label">mail/username</label>
+            <input type="mail"class="form-control" id="inputMail" formControlName="email" [ngClass]="{
+                'is-valid':
+                registerForm.controls['email'].valid &&
+                  (registerForm.controls['email'].touched ||
+                  registerForm.controls['email'].dirty),
+                'is-invalid':
+                registerForm.controls['email'].invalid &&
+                  (registerForm.controls['email'].touched ||
+                  registerForm.controls['email'].dirty)
+              }"/>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-sm-12 col-md-6">
+            <label for="inputPassword"class="form-label">password</label>
+            <br>
+            <span class="text-danger">La password tiene que contener numeros y letras mayusculas/minusculas</span>
+            <input type="password" class="form-control" id="inputPassword" formControlName="password"/>
+        </div>
+        <div class="col-sm-12 col-md-6 mt-4">
+            <label for="inputConfirm"class="form-label">Confirma la password</label>       
+            <br><br>
+            <input type="password" class="form-control" id="inputConfirm" formControlName="confirmPassword"/>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12 d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" [disabled]="this.disabled">Registrar</button>
+        </div>
+    </div>    
+    </form>
+    }
+    @else {
+        <div class="row d-flex justify-content-center">
+            <div class="col-sm-12">
+                <p>Se enviara un correo a {{this.registerForm.get('email')?.value}} con el link de confirmacion. </p>
+            </div>
+        </div>
+    }
+
+
+</main>

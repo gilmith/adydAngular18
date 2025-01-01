@@ -1,0 +1,15 @@
+<div #toast class="toast position-fixed p-3" [ngClass]="type" role="alert">
+          <div class="toast-header">
+            <strong class="me-auto">{{mensajeInput}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          @if(linkText){
+            <div class="toast-body">
+                {{text}} <a class="text-decoration-none link-primary" routerLink="../forgot">{{linkText}}</a>
+            </div>
+         } @else {
+            <div class="toast-body">
+                {{text}}
+            </div>
+         }
+        </div>
