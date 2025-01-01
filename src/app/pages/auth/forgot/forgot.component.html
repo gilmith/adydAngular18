@@ -1,1 +1,24 @@
-<p>forgot works!</p>
+<header class="container-fluid d-flex justify-content-center">
+    <img  class="img-fluid" src="../../../../assets/logos/adydlogo.png" alt="logoAdyd"/>
+</header>
+<main class="container mt-5 d-flex justify-content-center">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <p>Te enviaremos un correo con el link de reset</p>
+        </div>
+        <form (ngSubmit) ="onReset()" [formGroup]="forgotGroup">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="inputMail"></label>
+                    <input type="text" class="form-control" formControlName="email">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary mt-4">Reset</button>
+                </div>
+            </div>                        
+        </form>
+    </div>
+        
+</main>

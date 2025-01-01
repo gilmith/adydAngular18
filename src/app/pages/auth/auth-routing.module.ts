@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotComponent } from './forgot/forgot.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'forgot',
     component: ForgotComponent,
+  },
+  {
+    path: 'confirm/:id',
+    component: ConfirmComponent,
   }
 ];
 

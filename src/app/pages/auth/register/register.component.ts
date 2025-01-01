@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit{
   public registerForm : FormGroup;
   @ViewChild('toast') snackElement! : ElementRef;
   public disabled: boolean = true;
+  public clicked: boolean = false;
 
   
 
@@ -58,6 +59,7 @@ constructor(private fbs : FormBuilder,
 
 // esto por defecto recarga la pagina si no tiene un FormGroup enlazado en la etiqueta form
 public onSend() {
+  this.clicked = true;
   this.registerService.register({
     usuario :this.registerForm.controls['email'].value, 
     password: this.registerForm.controls['password'].value
