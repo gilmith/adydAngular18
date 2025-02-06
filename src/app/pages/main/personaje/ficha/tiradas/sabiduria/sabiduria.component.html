@@ -1,0 +1,47 @@
+<section class="row">
+    <div class="col-6">
+        <h1>Puntuacion Base</h1>
+        <br>
+        <h1>{{data?.puntuacionBase}}</h1>
+        <img src="../../../../../../../assets/imagenes/sabiduria.png" alt="sabiduria">
+    </div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <h4>Ajuste defensa magica</h4>
+                    <br>
+                    <h4>{{data?.defensa}}</h4>
+                </div>
+                <div class="row">
+                    <p>{{this.defensa}}</p>
+                </div>
+    
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <h4>Bonificacion de conjuros</h4>
+                    <br>
+                    <h4>{{data?.bonusConjuros}}</h4>
+                </div>
+                <div class="row">
+                    <p>{{this.bonificacionConjuros}}</p>
+                </div>                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <h4>Probabilidad de fracaso de conjuros</h4>
+                    <br>
+                    <h4>{{data?.fracasoConjuro}}</h4>
+                </div>
+                <div class="row">
+                    <p>{{this.fracaso}}</p>
+                </div>
+    
+            </div>            
+        </div>    
+    </div>
+
+</section>

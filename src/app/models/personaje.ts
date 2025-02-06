@@ -1,10 +1,14 @@
+import { Constitucion } from "./DescripcionesModel";
+import { Carisma, Destreza, Fuerza, Inteligencia, Sabiduria } from "./HabilidadesModels";
+
 export interface Personaje {
-    fuerza: number;
-    destreza : number;
-    carisma : number;
-    constitucion : number;
-    sabiduria : number;
-    inteligencia : number;
+    fuerza: Fuerza;
+    destreza : Destreza;
+    carisma : Carisma;
+    constitucion : Constitucion;
+    sabiduria : Sabiduria;
+    inteligencia : Inteligencia;
+    usuario : string;
     nombre : string;
     
 }

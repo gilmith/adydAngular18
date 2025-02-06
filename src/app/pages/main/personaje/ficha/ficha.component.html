@@ -4,25 +4,25 @@
             <div class="collapse navbar-collapse" id="navbarSteps">
                 <ul class="navbar-nav w-100 d-flex justify-content-between">
                   <li class="nav-item">
-                    <a class="nav-link active" [ngClass]="" aria-current="page" href="#">Tiradas</a>
+                    <a class="nav-link" [ngClass]="this.step() == 0 ? 'active' : 'disabled'" aria-current="page" href="#">Tiradas</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link disabled" [ngClass]="" href="#">Raza</a>
+                    <a class="nav-link" [ngClass]="this.step() == 1 ? 'active' : 'disabled'" href="#">Raza</a>
                   </li>                 
                   <li class="nav-item">
-                    <a class="nav-link disabled" [ngClass]="" aria-disabled="true">Categoria</a>
+                    <a class="nav-link" [ngClass]="this.step() == 1 ? 'active' : 'disabled'"aria-disabled="true">Categoria</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link disabled" [ngClass]="" aria-disabled="true">Alineamiento</a>
+                    <a class="nav-link" [ngClass]="this.step() == 2 ? 'active' : 'disabled'" aria-disabled="true">Alineamiento</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link disabled" [ngClass]="" aria-disabled="true">Datos Jugador</a>
+                    <a class="nav-link" [ngClass]="this.step() == 3 ? 'active' : 'disabled'" aria-disabled="true">Datos Jugador</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link disabled" [ngClass]="" aria-disabled="true">Hechizos</a>
+                    <a class="nav-link"[ngClass]="this.step() == 4 ? 'active' : 'disabled'" aria-disabled="true">Hechizos</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link disabled" [ngClass]="" aria-disabled="true">Guardar</a>
+                    <a class="nav-link" [ngClass]="this.step() == 5 ? 'active' : 'disabled'"  aria-disabled="true">Guardar</a>
                   </li>
                 </ul>                
               </div>
@@ -31,15 +31,21 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                @if(this.step == 0){
+                @if(this.step() == 0){
                   <app-tiradas [personaje]="this.personaje" (valorEmmit)="this.actualizaPersonaje($event)"></app-tiradas>
                 }
-                @if(this.showPrevious){
-                    <button type="submit" class="btn btn-primary">anterior</button>
+                @if(this.step() == 1){
+                  <app-raza></app-raza>
                 }
-                <button type="submit" class="btn btn-primary">siguiente</button>
+                @if(this.showPrevious){
+                    <button type="submit" class="btn btn-primary mt-2">anterior</button>
+                }
+                <button type="submit" class="btn btn-primary mt-2 ms-2" id="siguiente" [disabled]="!servicio.datosCargados()"  (click)="siguiente()">siguiente</button>
             </div>
         </div>
+    </div>
+    <div class="container ms-2">
+      <app-resumen></app-resumen>
     </div>
 
 </div>

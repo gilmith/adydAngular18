@@ -43,12 +43,12 @@ export class LoginComponent {
     }
     this.userService.login(login).subscribe({
       next : (value : Authorize) => {
-        sessionStorage.setItem('token', value.token);
+        sessionStorage.setItem('token', value.accessToken);
         this.router.navigateByUrl('/main');
       },
       error : (err : HttpErrorResponse) => {
         console.log('error');
-        //this.toatService.show({message : 'Error en el logado', text : 'de momento consulta el pete'});
+       // this.toastService.show({message : 'Error en el logado', text : 'de momento consulta el pete'});
       }
     })
   }

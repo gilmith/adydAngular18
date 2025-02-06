@@ -19,6 +19,8 @@ export class SidebarComponent implements AfterViewInit  {
 
   constructor() {
    effect(() => {
+    console.log('ha cambiado el valor de la señal ', this.isOpen.getData());
+
     this.sideBar?.toggle();
    })
   }

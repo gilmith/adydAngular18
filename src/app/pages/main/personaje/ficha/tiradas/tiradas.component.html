@@ -1,33 +1,143 @@
-<div cdkDropListGroup>
+
+  <div class="container">
     <div class="row">
-        <div class="col-sm-12 col-md-6">
-            <h2>Available items</h2>
-        
-            <div
-              cdkDropList
-              [cdkDropListData]="items"
-              class="example-list"
-              cdkDropListSortingDisabled
-              (cdkDropListDropped)="drop($event)">
-              @for (item of items; track item) {
-                <div class="example-box" cdkDrag>{{item}}</div>
-              }
-            </div>
-          </div>
-        
-          <div class="col-sm-12 col-md-6">
-            <h2>Shopping basket</h2>
-        
-            <div
-              cdkDropList
-              [cdkDropListData]="basket"
-              class="example-list"
-              (cdkDropListDropped)="drop($event)">
-              @for (item of basket; track item) {
-                <div class="example-box" cdkDrag>{{item}}</div>
-              }
-            </div>
-          </div>
+      <div cdkDropListGroup>
+        <div class="row mt-3">
+            <div class="col-sm-12 col-md-6">
+                <h2>Puntuaciones</h2>
+                <div
+                  cdkDropList
+                  [cdkDropListData]="items"
+                  class="elementosLista mt-2"
+                  cdkDropListSortingDisabled                  
+                  (cdkDropListDropped)="drop($event)">
+                  @for (item of items; track item) {
+                    <div class="example-box" cdkDrag>{{item}}</div>
+                  }
+                </div>
+                <div class="mt-3">
+                  <button class="btn btn-primary" (click)="reroll()">Volver a tirar</button>
+                </div>
+              </div>
+            
+              <div class="col-sm-12 col-md-6">
+                <h2>Habilidades</h2>
+                <div class="container">
+                  <div class="row mb-1">
+                    <div class="col-sm-12 col-md-6">
+                      <h3>Fuerza</h3>
+                      <div
+                        cdkDropList
+                        [cdkDropListData]="fuerza"
+                        class="elementosLista mt-2"
+                        (cdkDropListDropped)="dropFuerza($event)"
+                        (click)="this.showFuerza()">
+                        @for (itemf of fuerza; track itemf) {
+                          <div class="example-box" cdkDrag>{{itemf}}</div>
+                        }
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <h3>Destreza</h3>
+                      <div
+                        cdkDropList
+                        [cdkDropListData]="destreza"
+                        class="elementosLista mt-2"
+                        (cdkDropListDropped)="dropDestreza($event)"
+                        (click)="this.showDestreza()">
+                        @for (itemd of destreza; track itemd) {
+                          <div class="example-box" cdkDrag>{{itemd}}</div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-1">
+                    <div class="col-sm-12 col-md-6">
+                      <h3>Constitucion</h3>
+                      <div
+                        cdkDropList
+                        [cdkDropListData]="constitucion"
+                        class="elementosLista mt-2"
+                        (cdkDropListDropped)="dropConstitucion($event)"
+                        (click)="this.showConstitucion()">
+                        @for (item of constitucion; track item) {
+                          <div class="example-box" cdkDrag>{{item}}</div>
+                        }
+                      </div>
+                    </div>
+                   <div class="col-sm-12 col-md-6">
+                      <h3>Inteligencia</h3>
+                      <div
+                        cdkDropList
+                        [cdkDropListData]="inteligencia"
+                        class="elementosLista mt-2"
+                        (cdkDropListDropped)="dropInteligencia($event)"
+                        (click)="this.showInteligencia()">
+                        @for (item of inteligencia; track item) {
+                          <div class="example-box" cdkDrag>{{item}}</div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                      <h3>Sabiduria</h3>
+                      <div
+                        cdkDropList
+                        [cdkDropListData]="sabiduria"
+                        class="elementosLista mt-2"
+                        (cdkDropListDropped)="dropSabiduria($event)"
+                        (click)="this.showSabiduria()">
+                        @for (item of sabiduria; track item) {
+                          <div class="example-box" cdkDrag>{{item}}</div>
+                        }
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <h3>Carisma</h3>
+                      <div
+                        cdkDropList
+                        [cdkDropListData]="carisma"
+                        class="elementosLista mt-2"
+                        (cdkDropListDropped)="dropCarisma($event)"
+                        (click)="this.showCarisma()">
+                        @for (item of carisma; track item) {
+                          <div class="example-box" cdkDrag>{{item}}</div>
+                        }
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+        </div>    
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-12">
+        @switch (componenteHabilidad()) {
+          @case ('F') {
+            <app-fuerza [data]="this.fuerzaData"/>
+          }
+          @case ('D') {
+            <app-destreza [data]="this.destrezaData"/>
+          }
+          @case('C'){
+            <app-constitucion [data]="this.constituciondData"/>
+          }
+          @case('I'){
+            <app-inteligencia [data]="this.inteligenciaData"/>
+          }
+          @case('S'){
+            <app-sabiduria [data]="this.sabiduriaData"/>
+          }
+          @case('CA'){
+            <app-carisma [data]="this.carismaData"/>
+          }
+          @case(''){
+            <div></div>
+          }
+        }
+      </div>
     </div>
     
-  </div>
+  </div> 
