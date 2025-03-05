@@ -1,5 +1,6 @@
 import { Constitucion } from "./DescripcionesModel";
 import { Carisma, Destreza, Fuerza, Inteligencia, Sabiduria } from "./HabilidadesModels";
+import { Raza } from "./RazasModel";
 
 export interface Personaje {
     fuerza: Fuerza;
@@ -9,6 +10,7 @@ export interface Personaje {
     sabiduria : Sabiduria;
     inteligencia : Inteligencia;
     usuario : string;
+    raza: Raza;
     nombre : string;
     
 }

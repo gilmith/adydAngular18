@@ -4,7 +4,7 @@ import { delay, Observable, of, switchMap } from 'rxjs';
 import { Carisma, Destreza, Fuerza, Inteligencia, Sabiduria } from '../models/HabilidadesModels';
 import { environment } from '../../../enviorments/enviorment';
 import { Constitucion, Descripciones, DescripcionMin } from '../models/DescripcionesModel';
-import { Razas } from '../models/RazasModel';
+import { Raza, Razas } from '../models/RazasModel';
 
 @Injectable({
   providedIn: 'root'
@@ -15,17 +15,13 @@ export class BackendService {
   constructor(private httpClient: HttpClient) { }
 
 
-  public getRazas(fuerza: number, destreza: number, carisma: number, constitucion: number, inteligencia: number, sabiduria: number) : Observable<string[]> {
+  public getRazas(fuerza: number, destreza: number, carisma: number, constitucion: number, inteligencia: number, sabiduria: number) : Observable<Raza[]> {
     let params = new HttpParams()
     .set('fuerza', fuerza).set('destreza', destreza).set('carisma', carisma).set('constitucion', constitucion).set('inteligencia', inteligencia).set('sabiduria', sabiduria);
-    return  this.httpClient.get<Razas>(`${environment.urlTiradas}/api/bbdd/razas/search/findRaza`, {params: params})
+    return this.httpClient.get<Razas>(`${environment.urlTiradas}/api/bbdd/razas/search/findRaza`, {params: params})
     .pipe(
-      switchMap((response : Razas) => {
-        let arrayRazasDisponibles: string[] = [];
-        response._embedded.razas.forEach(raza => {
-          arrayRazasDisponibles.push(raza.nombre);
-        });
-        return of(arrayRazasDisponibles);
+      switchMap((response : Razas) => {      
+        return of(response._embedded.razas);
     }));
   }
 

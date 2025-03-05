@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PersonajeService } from '../../service/personaje.service';
 import { BackendService } from '../../../../../services/backend.service';
+import { Raza } from '../../../../../models/RazasModel';
 
 @Component({
   selector: 'app-raza',
@@ -9,9 +10,13 @@ import { BackendService } from '../../../../../services/backend.service';
   templateUrl: './raza.component.html',
   styleUrl: './raza.component.css'
 })
-export class RazaComponent implements OnInit{
+export class RazaComponent implements OnInit, AfterViewInit{
 
-  public arrayRazasDisponibles : string[] = [];
+
+  public arrayRazasDisponibles? : Raza[];
+  public isBorderActive: boolean = false;
+  public raza? : Raza;
+  @ViewChild('#carouselRazas') carousel?: ElementRef;
 
   constructor(private personajeService : PersonajeService,
     private readonly backend : BackendService
@@ -27,6 +32,26 @@ export class RazaComponent implements OnInit{
     ).subscribe(response => {
       this.arrayRazasDisponibles = response;
     });
+  }
+
+  toogleBorder() {
+    this.isBorderActive = !this.isBorderActive;
+    if(!this.personajeService.personaje.raza && this.arrayRazasDisponibles){
+      this.personajeService.personaje.raza = this.arrayRazasDisponibles?.[0];
+    }
+  }
+
+  ngAfterViewInit() {
+    const carousel = document.getElementById('carouselRazas');
+
+    if (carousel) {
+      carousel.addEventListener('slid.bs.carousel', (event :any) => {
+        const to = event.to;
+        if(this.arrayRazasDisponibles){
+          this.personajeService.personaje.raza = this.arrayRazasDisponibles?.[to];
+        }
+      });
+    }
   }
 
 }

@@ -10,19 +10,19 @@
                     <a class="nav-link" [ngClass]="this.step() == 1 ? 'active' : 'disabled'" href="#">Raza</a>
                   </li>                 
                   <li class="nav-item">
-                    <a class="nav-link" [ngClass]="this.step() == 1 ? 'active' : 'disabled'"aria-disabled="true">Categoria</a>
+                    <a class="nav-link" [ngClass]="this.step() == 2 ? 'active' : 'disabled'"aria-disabled="true">Categoria</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" [ngClass]="this.step() == 2 ? 'active' : 'disabled'" aria-disabled="true">Alineamiento</a>
+                    <a class="nav-link" [ngClass]="this.step() == 3 ? 'active' : 'disabled'" aria-disabled="true">Alineamiento</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" [ngClass]="this.step() == 3 ? 'active' : 'disabled'" aria-disabled="true">Datos Jugador</a>
+                    <a class="nav-link" [ngClass]="this.step() == 4 ? 'active' : 'disabled'" aria-disabled="true">Datos Jugador</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link"[ngClass]="this.step() == 4 ? 'active' : 'disabled'" aria-disabled="true">Hechizos</a>
+                    <a class="nav-link"[ngClass]="this.step() == 5 ? 'active' : 'disabled'" aria-disabled="true">Hechizos</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" [ngClass]="this.step() == 5 ? 'active' : 'disabled'"  aria-disabled="true">Guardar</a>
+                    <a class="nav-link" [ngClass]="this.step() == 6 ? 'active' : 'disabled'"  aria-disabled="true">Guardar</a>
                   </li>
                 </ul>                
               </div>
@@ -35,10 +35,13 @@
                   <app-tiradas [personaje]="this.personaje" (valorEmmit)="this.actualizaPersonaje($event)"></app-tiradas>
                 }
                 @if(this.step() == 1){
-                  <app-raza></app-raza>
+                  <app-raza/>
+                }
+                @if(this.step() == 2){
+                  <app-categorias></app-categorias>
                 }
                 @if(this.showPrevious){
-                    <button type="submit" class="btn btn-primary mt-2">anterior</button>
+                    <button type="submit" class="btn btn-primary mt-2" (click)="anterior()">anterior</button>
                 }
                 <button type="submit" class="btn btn-primary mt-2 ms-2" id="siguiente" [disabled]="!servicio.datosCargados()"  (click)="siguiente()">siguiente</button>
             </div>

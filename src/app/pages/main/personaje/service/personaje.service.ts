@@ -54,7 +54,25 @@ export class PersonajeService {
       ilusiones: null,
     },
     usuario: '',
-    nombre: ''
+    nombre: '',
+    raza: {
+      nombre: '',
+      minimoFuerza: 0,
+      minimoDestreza: 0,
+      minimoConstitucion: 0,
+      minimoInteligencia: 0,
+      minimoSabiduria: 0,
+      minimoCarisma: 0,
+      id: 0,
+      modifConstitucion: null,
+      modifCarisma: null,
+      modifFuerza: null,
+      modifDestreza: null,
+      modifSabiduria: null,
+      modifInteligencia: null,
+      descripcion: '',
+      habilidadesEspeciales: null,
+    }
   }
 
 
@@ -104,7 +122,6 @@ export class PersonajeService {
       && this.personaje.inteligencia.puntuacionBase !== 0
       && this.personaje.sabiduria.puntuacionBase !== 0)
     );
-    console.log(this.datosCargados)
   }
 
   
