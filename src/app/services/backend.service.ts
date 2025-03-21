@@ -6,9 +6,7 @@ import { environment } from '../../../enviorments/enviorment';
 import { Constitucion, Descripciones, DescripcionMin } from '../models/DescripcionesModel';
 import { Raza, Razas } from '../models/RazasModel';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class BackendService {
 
 

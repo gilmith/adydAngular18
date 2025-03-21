@@ -10,7 +10,8 @@ import { CategoriasComponent } from "./categorias/categorias.component";
 @Component({
   selector: 'app-ficha',
   standalone: true,
-  imports: [CommonModule, TiradasComponent, RazaComponent, ResumenComponent, CategoriasComponent],
+  imports: [CommonModule, TiradasComponent, RazaComponent, CategoriasComponent],
+  providers: [PersonajeService],
   templateUrl: './ficha.component.html',
   styleUrl: './ficha.component.css'
 })

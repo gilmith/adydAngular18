@@ -22,7 +22,8 @@ import { CarismaComponent } from "./carisma/carisma.component";
   standalone: true,
   imports: [CommonModule, DragDropModule, FuerzaComponent, DestrezaComponent, ConstitucionComponent, InteligenciaComponent, SabiduriaComponent, CarismaComponent],
   templateUrl: './tiradas.component.html',
-  styleUrl: './tiradas.component.css'
+  styleUrl: './tiradas.component.css',
+  providers: [BackendService]
 })
 export class TiradasComponent implements OnInit{
 

@@ -1,10 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { Personaje } from '../../../../models/personaje';
 
-@Injectable({
-  providedIn: 'root'
-})
 
+@Injectable()
 export class PersonajeService {
 
   public datosCargados = signal(false);
