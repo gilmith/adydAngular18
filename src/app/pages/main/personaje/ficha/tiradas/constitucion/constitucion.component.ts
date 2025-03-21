@@ -4,11 +4,10 @@ import { BackendService } from '../../../../../../services/backend.service';
 import { PersonajeService } from '../../../service/personaje.service';
 
 @Component({
-  selector: 'app-constitucion',
-  standalone: true,
-  imports: [],
-  templateUrl: './constitucion.component.html',
-  styleUrl: './constitucion.component.css'
+    selector: 'app-constitucion',
+    imports: [],
+    templateUrl: './constitucion.component.html',
+    styleUrl: './constitucion.component.css'
 })
 export class ConstitucionComponent implements OnInit{
 

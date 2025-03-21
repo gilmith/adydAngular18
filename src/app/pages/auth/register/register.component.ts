@@ -9,12 +9,11 @@ import { ResponseMail } from '../interfaces/response-mail';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  providers: [ToastService],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+    selector: 'app-register',
+    imports: [CommonModule, ReactiveFormsModule, RouterModule],
+    providers: [ToastService],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css'
 })
 export class RegisterComponent implements OnInit{
 

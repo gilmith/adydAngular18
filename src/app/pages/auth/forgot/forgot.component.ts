@@ -4,11 +4,10 @@ import { UserService } from '../services/user.service';
 import { ToastService } from '../../../services/toastService/toast.service';
 
 @Component({
-  selector: 'app-forgot',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './forgot.component.html',
-  styleUrl: './forgot.component.css'
+    selector: 'app-forgot',
+    imports: [ReactiveFormsModule],
+    templateUrl: './forgot.component.html',
+    styleUrl: './forgot.component.css'
 })
 export class ForgotComponent {
 

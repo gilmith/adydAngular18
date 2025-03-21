@@ -18,12 +18,11 @@ import { SabiduriaComponent } from "./sabiduria/sabiduria.component";
 import { CarismaComponent } from "./carisma/carisma.component";
 
 @Component({
-  selector: 'app-tiradas',
-  standalone: true,
-  imports: [CommonModule, DragDropModule, FuerzaComponent, DestrezaComponent, ConstitucionComponent, InteligenciaComponent, SabiduriaComponent, CarismaComponent],
-  templateUrl: './tiradas.component.html',
-  styleUrl: './tiradas.component.css',
-  providers: [BackendService]
+    selector: 'app-tiradas',
+    imports: [CommonModule, DragDropModule, FuerzaComponent, DestrezaComponent, ConstitucionComponent, InteligenciaComponent, SabiduriaComponent, CarismaComponent],
+    templateUrl: './tiradas.component.html',
+    styleUrl: './tiradas.component.css',
+    providers: [BackendService]
 })
 export class TiradasComponent implements OnInit{
 

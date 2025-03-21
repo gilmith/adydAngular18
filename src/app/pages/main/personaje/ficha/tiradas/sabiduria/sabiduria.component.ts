@@ -4,11 +4,10 @@ import { BackendService } from '../../../../../../services/backend.service';
 import { PersonajeService } from '../../../service/personaje.service';
 
 @Component({
-  selector: 'app-sabiduria',
-  standalone: true,
-  imports: [],
-  templateUrl: './sabiduria.component.html',
-  styleUrl: './sabiduria.component.css'
+    selector: 'app-sabiduria',
+    imports: [],
+    templateUrl: './sabiduria.component.html',
+    styleUrl: './sabiduria.component.css'
 })
 export class SabiduriaComponent implements OnInit{
   @Input() public data? : Sabiduria;

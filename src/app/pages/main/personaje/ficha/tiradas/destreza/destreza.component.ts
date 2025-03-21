@@ -4,11 +4,10 @@ import { Destreza } from '../../../../../../models/HabilidadesModels';
 import { PersonajeService } from '../../../service/personaje.service';
 
 @Component({
-  selector: 'app-destreza',
-  standalone: true,
-  imports: [],
-  templateUrl: './destreza.component.html',
-  styleUrl: './destreza.component.css'
+    selector: 'app-destreza',
+    imports: [],
+    templateUrl: './destreza.component.html',
+    styleUrl: './destreza.component.css'
 })
 export class DestrezaComponent implements OnInit{
   public reaccion?: string;

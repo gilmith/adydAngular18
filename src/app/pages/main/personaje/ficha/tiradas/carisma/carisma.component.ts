@@ -4,11 +4,10 @@ import { BackendService } from '../../../../../../services/backend.service';
 import { PersonajeService } from '../../../service/personaje.service';
 
 @Component({
-  selector: 'app-carisma',
-  standalone: true,
-  imports: [],
-  templateUrl: './carisma.component.html',
-  styleUrl: './carisma.component.css'
+    selector: 'app-carisma',
+    imports: [],
+    templateUrl: './carisma.component.html',
+    styleUrl: './carisma.component.css'
 })
 export class CarismaComponent implements OnInit{
 

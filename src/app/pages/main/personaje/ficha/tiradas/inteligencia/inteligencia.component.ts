@@ -4,11 +4,10 @@ import { BackendService } from '../../../../../../services/backend.service';
 import { PersonajeService } from '../../../service/personaje.service';
 
 @Component({
-  selector: 'app-inteligencia',
-  standalone: true,
-  imports: [],
-  templateUrl: './inteligencia.component.html',
-  styleUrl: './inteligencia.component.css'
+    selector: 'app-inteligencia',
+    imports: [],
+    templateUrl: './inteligencia.component.html',
+    styleUrl: './inteligencia.component.css'
 })
 export class InteligenciaComponent implements OnInit{
 

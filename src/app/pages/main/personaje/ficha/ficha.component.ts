@@ -8,12 +8,11 @@ import { ResumenComponent } from "./resumen/resumen.component";
 import { CategoriasComponent } from "./categorias/categorias.component";
 
 @Component({
-  selector: 'app-ficha',
-  standalone: true,
-  imports: [CommonModule, TiradasComponent, RazaComponent, CategoriasComponent],
-  providers: [PersonajeService],
-  templateUrl: './ficha.component.html',
-  styleUrl: './ficha.component.css'
+    selector: 'app-ficha',
+    imports: [CommonModule, TiradasComponent, RazaComponent, CategoriasComponent],
+    providers: [PersonajeService],
+    templateUrl: './ficha.component.html',
+    styleUrl: './ficha.component.css'
 })
 export class FichaComponent {
 

@@ -4,12 +4,11 @@ import { BackendService } from '../../../../../services/backend.service';
 import { Raza } from '../../../../../models/RazasModel';
 
 @Component({
-  selector: 'app-raza',
-  standalone: true,
-  imports: [],
-  templateUrl: './raza.component.html',
-  styleUrl: './raza.component.css', 
-  providers: [PersonajeService, BackendService]
+    selector: 'app-raza',
+    imports: [],
+    templateUrl: './raza.component.html',
+    styleUrl: './raza.component.css',
+    providers: [PersonajeService, BackendService]
 })
 export class RazaComponent implements OnInit, AfterViewInit{
 

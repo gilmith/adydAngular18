@@ -2,11 +2,10 @@ import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { PersonajeService } from '../../service/personaje.service';
 
 @Component({
-  selector: 'app-categorias',
-  standalone: true,
-  imports: [],
-  templateUrl: './categorias.component.html',
-  styleUrl: './categorias.component.css'
+    selector: 'app-categorias',
+    imports: [],
+    templateUrl: './categorias.component.html',
+    styleUrl: './categorias.component.css'
 })
 export class CategoriasComponent {
 

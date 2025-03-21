@@ -5,11 +5,10 @@ import { Descripciones, DescripcionMin } from '../../../../../../models/Descripc
 import { PersonajeService } from '../../../service/personaje.service';
 
 @Component({
-  selector: 'app-fuerza',
-  standalone: true,
-  imports: [],
-  templateUrl: './fuerza.component.html',
-  styleUrl: './fuerza.component.css'
+    selector: 'app-fuerza',
+    imports: [],
+    templateUrl: './fuerza.component.html',
+    styleUrl: './fuerza.component.css'
 })
 export class FuerzaComponent implements OnInit {
 

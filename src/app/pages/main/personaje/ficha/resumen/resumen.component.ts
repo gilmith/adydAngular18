@@ -2,11 +2,10 @@ import { Component, inject, OnChanges, OnInit, SimpleChanges } from '@angular/co
 import { PersonajeService } from '../../service/personaje.service';
 
 @Component({
-  selector: 'app-resumen',
-  standalone: true,
-  imports: [],
-  templateUrl: './resumen.component.html',
-  styleUrl: './resumen.component.css'
+    selector: 'app-resumen',
+    imports: [],
+    templateUrl: './resumen.component.html',
+    styleUrl: './resumen.component.css'
 })
 export class ResumenComponent implements OnInit, OnChanges {
 

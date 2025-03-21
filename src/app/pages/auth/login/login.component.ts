@@ -8,11 +8,10 @@ import { Login } from '../interfaces/login';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule], //si no tengo el router module no van a funcionar los links porque son standalone
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    imports: [CommonModule, ReactiveFormsModule, RouterModule], //si no tengo el router module no van a funcionar los links porque son standalone
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
