@@ -2,7 +2,9 @@ import { Injectable, signal } from '@angular/core';
 import { Personaje } from '../../../../models/personaje';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PersonajeService {
 
   public datosCargados = signal(false);
@@ -124,7 +126,9 @@ export class PersonajeService {
 
   
 
-  constructor() { }
+  constructor() { 
+    console.log('MiServicio creado con ID:', Math.random().toString(36).substring(2, 15));
+  }
 
 
 

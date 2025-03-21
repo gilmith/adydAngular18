@@ -7,7 +7,8 @@ import { PersonajeService } from '../../../service/personaje.service';
     selector: 'app-destreza',
     imports: [],
     templateUrl: './destreza.component.html',
-    styleUrl: './destreza.component.css'
+    styleUrl: './destreza.component.css',
+    standalone: true
 })
 export class DestrezaComponent implements OnInit{
   public reaccion?: string;

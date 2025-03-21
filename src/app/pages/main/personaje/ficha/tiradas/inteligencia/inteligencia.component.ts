@@ -7,7 +7,8 @@ import { PersonajeService } from '../../../service/personaje.service';
     selector: 'app-inteligencia',
     imports: [],
     templateUrl: './inteligencia.component.html',
-    styleUrl: './inteligencia.component.css'
+    styleUrl: './inteligencia.component.css',
+    standalone: true
 })
 export class InteligenciaComponent implements OnInit{
 

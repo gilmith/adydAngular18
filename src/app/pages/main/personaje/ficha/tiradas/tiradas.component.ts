@@ -16,13 +16,15 @@ import { ConstitucionComponent } from "./constitucion/constitucion.component";
 import { InteligenciaComponent } from "./inteligencia/inteligencia.component";
 import { SabiduriaComponent } from "./sabiduria/sabiduria.component";
 import { CarismaComponent } from "./carisma/carisma.component";
+import { PersonajeService } from '../../service/personaje.service';
 
 @Component({
     selector: 'app-tiradas',
     imports: [CommonModule, DragDropModule, FuerzaComponent, DestrezaComponent, ConstitucionComponent, InteligenciaComponent, SabiduriaComponent, CarismaComponent],
     templateUrl: './tiradas.component.html',
     styleUrl: './tiradas.component.css',
-    providers: [BackendService]
+    providers: [BackendService],
+    standalone: true
 })
 export class TiradasComponent implements OnInit{
 
@@ -30,7 +32,9 @@ export class TiradasComponent implements OnInit{
 
   public componenteHabilidad =signal<'F'| 'D'| 'C'| 'CA'| 'S'| 'I'|''>('');
 
-  constructor(private readonly backend : BackendService) {}
+  constructor(private readonly backend : BackendService,
+    private readonly personajeService : PersonajeService
+  ) {}
 
   @Input() personaje? : Personaje;
   @Output() public valorEmmit: EventEmitter<Personaje> = new EventEmitter();

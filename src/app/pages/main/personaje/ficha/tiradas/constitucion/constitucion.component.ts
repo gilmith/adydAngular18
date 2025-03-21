@@ -7,7 +7,8 @@ import { PersonajeService } from '../../../service/personaje.service';
     selector: 'app-constitucion',
     imports: [],
     templateUrl: './constitucion.component.html',
-    styleUrl: './constitucion.component.css'
+    styleUrl: './constitucion.component.css',
+    standalone: true
 })
 export class ConstitucionComponent implements OnInit{
 

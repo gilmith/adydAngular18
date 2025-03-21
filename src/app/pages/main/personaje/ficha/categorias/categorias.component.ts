@@ -5,7 +5,8 @@ import { PersonajeService } from '../../service/personaje.service';
     selector: 'app-categorias',
     imports: [],
     templateUrl: './categorias.component.html',
-    styleUrl: './categorias.component.css'
+    styleUrl: './categorias.component.css',
+    standalone: true
 })
 export class CategoriasComponent {
 

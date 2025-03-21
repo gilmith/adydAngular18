@@ -4,15 +4,15 @@ import { TiradasComponent } from "./tiradas/tiradas.component";
 import { Personaje } from '../../../../models/personaje';
 import { RazaComponent } from "./raza/raza.component";
 import { PersonajeService } from '../service/personaje.service';
-import { ResumenComponent } from "./resumen/resumen.component";
 import { CategoriasComponent } from "./categorias/categorias.component";
 
 @Component({
     selector: 'app-ficha',
     imports: [CommonModule, TiradasComponent, RazaComponent, CategoriasComponent],
-    providers: [PersonajeService],
+    providers: [],
     templateUrl: './ficha.component.html',
-    styleUrl: './ficha.component.css'
+    styleUrl: './ficha.component.css',
+    standalone: true
 })
 export class FichaComponent {
 

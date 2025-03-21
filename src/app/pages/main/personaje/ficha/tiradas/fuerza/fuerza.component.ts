@@ -8,7 +8,8 @@ import { PersonajeService } from '../../../service/personaje.service';
     selector: 'app-fuerza',
     imports: [],
     templateUrl: './fuerza.component.html',
-    styleUrl: './fuerza.component.css'
+    styleUrl: './fuerza.component.css',
+    standalone:true
 })
 export class FuerzaComponent implements OnInit {
 

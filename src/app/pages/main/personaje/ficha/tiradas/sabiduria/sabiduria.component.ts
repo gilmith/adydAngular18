@@ -7,7 +7,8 @@ import { PersonajeService } from '../../../service/personaje.service';
     selector: 'app-sabiduria',
     imports: [],
     templateUrl: './sabiduria.component.html',
-    styleUrl: './sabiduria.component.css'
+    styleUrl: './sabiduria.component.css',
+    standalone: true
 })
 export class SabiduriaComponent implements OnInit{
   @Input() public data? : Sabiduria;

@@ -7,7 +7,8 @@ import { PersonajeService } from '../../../service/personaje.service';
     selector: 'app-carisma',
     imports: [],
     templateUrl: './carisma.component.html',
-    styleUrl: './carisma.component.css'
+    styleUrl: './carisma.component.css',
+    standalone: true
 })
 export class CarismaComponent implements OnInit{
 

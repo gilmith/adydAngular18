@@ -8,7 +8,8 @@ import { Raza } from '../../../../../models/RazasModel';
     imports: [],
     templateUrl: './raza.component.html',
     styleUrl: './raza.component.css',
-    providers: [PersonajeService, BackendService]
+    providers: [BackendService],
+    standalone: true
 })
 export class RazaComponent implements OnInit, AfterViewInit{
 
@@ -18,7 +19,7 @@ export class RazaComponent implements OnInit, AfterViewInit{
   public raza? : Raza;
   @ViewChild('#carouselRazas') carousel?: ElementRef;
 
-  constructor(private readonly personajeService: PersonajeService,
+  constructor(private personajeService: PersonajeService,
     private readonly backend : BackendService
   ) {}
 
