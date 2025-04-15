@@ -8,7 +8,6 @@ import { Raza } from '../../../../../models/RazasModel';
     imports: [],
     templateUrl: './raza.component.html',
     styleUrl: './raza.component.css',
-    providers: [BackendService],
     standalone: true
 })
 export class RazaComponent implements OnInit, AfterViewInit{
@@ -24,7 +23,7 @@ export class RazaComponent implements OnInit, AfterViewInit{
   ) {}
 
   ngOnInit(): void {
-    this.backend.getRazas(this.personajeService.personaje.fuerza.puntuacionBase,
+    /*this.backend.getRazas(this.personajeService.personaje.fuerza.id,
       this.personajeService.personaje.destreza.puntuacionBase,
       this.personajeService.personaje.carisma.puntuacionBase,
       this.personajeService.personaje.constitucion.puntuacionBase,
@@ -32,7 +31,7 @@ export class RazaComponent implements OnInit, AfterViewInit{
       this.personajeService.personaje.sabiduria.puntuacionBase
     ).subscribe(response => {
       this.arrayRazasDisponibles = response;
-    });
+    });*/
   }
 
   toogleBorder() {

@@ -1,17 +1,16 @@
 import { Injectable, signal } from '@angular/core';
-import { Personaje } from '../../../../models/personaje';
+import { Personaje, Sexo } from '../../../../models/personaje';
+import {Fuerza} from "adyd-api-client";
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PersonajeService {
 
   public datosCargados = signal(false);
 
   public personaje : Personaje = {
     fuerza: {
-      puntuacionBase: 0,
+      id: "",
       probimpacto: 0,
       ajusteDano: 0,
       pesoTranspor: 0,
@@ -54,6 +53,10 @@ export class PersonajeService {
       ilusiones: null,
     },
     usuario: '',
+    sexo: Sexo.TBC,
+    colorPelo: '',
+    altura: 0,
+    edad: 0,
     nombre: '',
     raza: {
       nombre: '',
@@ -72,7 +75,16 @@ export class PersonajeService {
       modifInteligencia: null,
       descripcion: '',
       habilidadesEspeciales: null,
-    }
+    },
+    categoria: {
+      nombre: '',
+      id: 0,
+      dadoGolpe: 0,
+      puntosPericias: 0,
+      puntosPericiasNoArmas: 0,
+      descripcion: ''
+    },
+    alineamiento : ''
   }
 
 
@@ -107,7 +119,7 @@ export class PersonajeService {
     }
     this.cargados()
   }
-  setFuerza(data: import("../../../../models/HabilidadesModels").Fuerza | undefined) {
+  setFuerza(data: Fuerza | undefined) {
     if(data){
       this.personaje.fuerza = data;
     }
@@ -116,17 +128,17 @@ export class PersonajeService {
 
   cargados() {
     this.datosCargados.update(() => (this.personaje.carisma.puntuacionBase !== 0
-      && this.personaje.constitucion.puntuacionBase !== 0 
+      && this.personaje.constitucion.puntuacionBase !== 0
       && this.personaje.destreza.puntuacionBase !== 0
-      && this.personaje.fuerza.puntuacionBase !== 0
+      && this.personaje.fuerza.id !== "0"
       && this.personaje.inteligencia.puntuacionBase !== 0
       && this.personaje.sabiduria.puntuacionBase !== 0)
     );
   }
 
-  
 
-  constructor() { 
+
+  constructor() {
     console.log('MiServicio creado con ID:', Math.random().toString(36).substring(2, 15));
   }
 

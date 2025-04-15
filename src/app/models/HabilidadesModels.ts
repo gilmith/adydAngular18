@@ -1,23 +1,3 @@
-export interface Fuerza {
-    puntuacionBase: number;
-    probimpacto:    number;
-    ajusteDano:     number;
-    pesoTranspor:   number;
-    pesoMaximo:     number;
-    abrirPuertas:   string;
-    doblarBarras:   number;
-}
-
-export interface Links {
-    self:              HabilidadesFuerza;
-    habilidadesFuerza: HabilidadesFuerza;
-}
-
-export interface HabilidadesFuerza {
-    href: string;
-}
-
-
 export interface Destreza {
     puntuacionBase: number;
     reaccion:       number;

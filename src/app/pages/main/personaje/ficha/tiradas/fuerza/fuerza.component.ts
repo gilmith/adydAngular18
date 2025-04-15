@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Fuerza } from '../../../../../../models/HabilidadesModels';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import { BackendService } from '../../../../../../services/backend.service';
-import { Descripciones, DescripcionMin } from '../../../../../../models/DescripcionesModel';
 import { PersonajeService } from '../../../service/personaje.service';
+import { Fuerza, HabilidadesFuerzaService } from 'adyd-api-client'
+import {BASE_PATH} from "adyd-api-client";
 
 @Component({
     selector: 'app-fuerza',

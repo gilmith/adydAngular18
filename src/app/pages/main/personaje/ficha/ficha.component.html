@@ -8,7 +8,7 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" [ngClass]="this.step() == 1 ? 'active' : 'disabled'" href="#">Raza</a>
-                  </li>                 
+                  </li>
                   <li class="nav-item">
                     <a class="nav-link" [ngClass]="this.step() == 2 ? 'active' : 'disabled'"aria-disabled="true">Categoria</a>
                   </li>
@@ -24,9 +24,9 @@
                   <li class="nav-item">
                     <a class="nav-link" [ngClass]="this.step() == 6 ? 'active' : 'disabled'"  aria-disabled="true">Guardar</a>
                   </li>
-                </ul>                
+                </ul>
               </div>
-            </div>       
+            </div>
     </nav>
     <div class="container">
         <div class="row">
@@ -39,6 +39,12 @@
                 }
                 @if(this.step() == 2){
                   <app-categorias></app-categorias>
+                }
+                @if(this.step() ==3){
+                  <app-alineamiento/>
+                }
+                @if(this.step() ==4){
+                <app-datosjugador/>
                 }
                 @if(this.showPrevious){
                     <button type="submit" class="btn btn-primary mt-2" (click)="anterior()">anterior</button>

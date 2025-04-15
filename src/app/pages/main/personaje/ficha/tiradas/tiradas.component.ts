@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, signal } from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output, signal} from '@angular/core';
 import { Personaje } from '../../../../../models/personaje';
 import {
   CdkDragDrop,
@@ -9,32 +9,36 @@ import {
 } from '@angular/cdk/drag-drop';
 import { BackendService } from '../../../../../services/backend.service';
 import { FuerzaComponent } from "./fuerza/fuerza.component";
-import { Carisma, Destreza, Fuerza, HabilidadesFuerza, Inteligencia, Sabiduria } from '../../../../../models/HabilidadesModels';
+import { Carisma, Destreza, Inteligencia, Sabiduria } from '../../../../../models/HabilidadesModels';
 import { DestrezaComponent } from "./destreza/destreza.component";
 import { Constitucion } from '../../../../../models/DescripcionesModel';
 import { ConstitucionComponent } from "./constitucion/constitucion.component";
 import { InteligenciaComponent } from "./inteligencia/inteligencia.component";
 import { SabiduriaComponent } from "./sabiduria/sabiduria.component";
 import { CarismaComponent } from "./carisma/carisma.component";
-import { PersonajeService } from '../../service/personaje.service';
+import {BASE_PATH, Fuerza, HabilidadesFuerzaService} from "adyd-api-client";
 
 @Component({
     selector: 'app-tiradas',
     imports: [CommonModule, DragDropModule, FuerzaComponent, DestrezaComponent, ConstitucionComponent, InteligenciaComponent, SabiduriaComponent, CarismaComponent],
     templateUrl: './tiradas.component.html',
     styleUrl: './tiradas.component.css',
-    providers: [BackendService],
-    standalone: true
+    standalone: true,
+    providers: [
+      HabilidadesFuerzaService,
+      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+    ]
 })
 export class TiradasComponent implements OnInit{
 
 
 
   public componenteHabilidad =signal<'F'| 'D'| 'C'| 'CA'| 'S'| 'I'|''>('');
+  private readonly fuerzaService = inject(HabilidadesFuerzaService);
 
   constructor(private readonly backend : BackendService,
-    private readonly personajeService : PersonajeService
-  ) {}
+  ) {
+  }
 
   @Input() personaje? : Personaje;
   @Output() public valorEmmit: EventEmitter<Personaje> = new EventEmitter();
@@ -80,10 +84,10 @@ puntuaciones: any;
         event.previousIndex,
         event.currentIndex,
       );
-      this.backend.getFuerza(this.fuerza[0]).subscribe(response => {
+      this.fuerzaService.habilidadesFuerzaPuntuacionBaseGet(this.fuerza[0]).subscribe(response => {
         this.fuerzaData = response;
         this.componenteHabilidad.set('F');
-      });  
+      });
     }
   }
   }
@@ -92,9 +96,9 @@ puntuaciones: any;
     this.backend.getFuerza(this.fuerza[0]).subscribe(response => {
       this.fuerzaData = response;
       this.componenteHabilidad.set('F');
-    });  
+    });
   }
-    
+
 
   dropDestreza(event: CdkDragDrop<number[]>) {
     if(this.destreza.length == 0) {
@@ -110,7 +114,7 @@ puntuaciones: any;
       this.backend.getDestreza(this.destreza[0]).subscribe(response => {
         this.destrezaData = response;
         this.componenteHabilidad.set('D');
-      });  
+      });
     }
   }
   }
@@ -119,7 +123,7 @@ puntuaciones: any;
     this.backend.getDestreza(this.destreza[0]).subscribe(response => {
       this.destrezaData = response;
       this.componenteHabilidad.set('D');
-    });  
+    });
   }
 
   dropConstitucion(event: CdkDragDrop<number[]>) {
@@ -136,7 +140,7 @@ puntuaciones: any;
         this.backend.getConstitucion(this.constitucion[0]).subscribe(response => {
           this.constituciondData = response;
           this.componenteHabilidad.set('C');
-        });  
+        });
       }
     }
   }
@@ -145,7 +149,7 @@ puntuaciones: any;
     this.backend.getConstitucion(this.constitucion[0]).subscribe(response => {
       this.constituciondData = response;
       this.componenteHabilidad.set('C');
-    });  
+    });
   }
 
   dropInteligencia(event: CdkDragDrop<number[]>) {
@@ -162,7 +166,7 @@ puntuaciones: any;
         this.backend.getInteligencia(this.inteligencia[0]).subscribe(response => {
           this.inteligenciaData = response;
           this.componenteHabilidad.set('I');
-        }); 
+        });
       }
     }
   }
@@ -180,7 +184,7 @@ puntuaciones: any;
         this.backend.getSabiduria(this.sabiduria[0]).subscribe(response => {
           this.sabiduriaData = response;
           this.componenteHabilidad.set('S');
-        });  
+        });
       }
     }
   }
@@ -189,13 +193,13 @@ puntuaciones: any;
     this.backend.getInteligencia(this.inteligencia[0]).subscribe(response => {
       this.inteligenciaData = response;
       this.componenteHabilidad.set('I');
-    }); 
+    });
   }
-  public showSabiduria(){ 
+  public showSabiduria(){
     this.backend.getSabiduria(this.sabiduria[0]).subscribe(response => {
       this.sabiduriaData = response;
       this.componenteHabilidad.set('S');
-    });  
+    });
   }
 
   dropCarisma(event: CdkDragDrop<number[]>) {
@@ -212,7 +216,7 @@ puntuaciones: any;
         this.backend.getCarisma(this.carisma[0]).subscribe(response => {
           this.carismaData = response;
           this.componenteHabilidad.set('CA');
-        });  
+        });
       }
     }
   }
@@ -221,9 +225,9 @@ puntuaciones: any;
     this.backend.getCarisma(this.carisma[0]).subscribe(response => {
       this.carismaData = response;
       this.componenteHabilidad.set('CA');
-    });  
+    });
   }
-    
+
   private numeroAleatorioRango(min :number, max :number) {
     min = Math.ceil(min);
     max = Math.floor(max);

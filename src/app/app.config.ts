@@ -9,7 +9,7 @@ import { headerInterceptor } from './shared/interceptors/header-interceptor.inte
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient( withInterceptors([headerInterceptor, spinnerInterceptor])),
     ToastService, provideAnimationsAsync()

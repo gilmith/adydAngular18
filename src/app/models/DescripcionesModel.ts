@@ -1,21 +1,3 @@
-export interface Descripciones {
-    _embedded: Embedded;
-    _links:    DescripcionesLinks;
-    page:      Page;
-}
-
-export interface Embedded {
-    descripcioneses: Descripcionesis[];
-}
-
-export interface Descripcionesis {
-    id:             number;
-    habilidad:      string;
-    caracteristica: string;
-    descripcion:    string;
-    _links:         DescripcionesisLinks;
-}
-
 export interface DescripcionMin {
     caracteristica : string;
     description : string;
