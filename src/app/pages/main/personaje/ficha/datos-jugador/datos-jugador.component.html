@@ -1,0 +1,46 @@
+<div class="container">
+  <form [formGroup]="datosJugador" class="form-control" (ngSubmit)="guardar()">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <label for="nombrePersonaje">Nombre Personaje</label>
+        <input [ngClass]="{
+                    'is-valid':
+                      datosJugador.controls['nombre'].valid &&
+                      (datosJugador.controls['nombre'].touched ||
+                        datosJugador.controls['nombre'].dirty),
+                    'is-invalid':
+                      datosJugador.controls['nombre'].invalid &&
+                      (datosJugador.controls['nombre'].touched ||
+                        datosJugador.controls['nombre'].dirty)
+               }" class="form-control-plaintext" formControlName="nombre"
+               id="nombrePersonaje"
+               type="text">
+          @if (datosJugador.controls['nombre'].invalid &&
+             (datosJugador.controls['nombre'].touched ||
+             datosJugador.controls['nombre'].dirty)) {
+            <div class="invalid-feedback">El nombre no puede contener numeros</div>
+           }
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label for="nombrePersonaje1">Nombre Personaje</label>
+        <input [ngClass]="{
+                    'is-valid':
+                      datosJugador.controls['nombre'].valid &&
+                      (datosJugador.controls['nombre'].touched ||
+                        datosJugador.controls['nombre'].dirty),
+                    'is-invalid':
+                      datosJugador.controls['nombre'].invalid &&
+                      (datosJugador.controls['nombre'].touched ||
+                        datosJugador.controls['nombre'].dirty)
+               }" class="form-control-plaintext" formControlName="nombre"
+               id="nombrePersonaje1"
+               type="text">
+        @if (datosJugador.controls['nombre'].invalid &&
+        (datosJugador.controls['nombre'].touched ||
+          datosJugador.controls['nombre'].dirty)) {
+          <div class="invalid-feedback">El nombre no puede contener numeros</div>
+        }
+      </div>
+    </div>
+  </form>
+</div>

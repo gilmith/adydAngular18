@@ -1,0 +1,17 @@
+<div class="container">
+    @for (fila of dividirEnFilas(this.alineamientos, 3); track $index) {
+        <div class="row mt-4">
+          @for (elemento of fila; track $index) {
+            <div class="col-4" >
+                <div class="card text-center" (click)="selectAlineamiento(elemento.id, elemento.nombre)" [ngClass]="{'border-black': alineamientoSeleccionado === elemento.id}">
+                    <img src="..." class="card-img-top" alt="...">
+                    <h5 class="card-title">{{elemento.nombre}}</h5>
+                    <div class="card-body">
+                      <p class="card-text text-justify">{{elemento.descripcion}}</p>
+                    </div>
+                  </div>
+            </div>
+          }
+        </div>
+      }
+</div>

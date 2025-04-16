@@ -1,0 +1,4 @@
+.border-black {
+  border: 5px solid black; /* Borde negro de 5px */
+  box-sizing: border-box; /* Asegura que el borde no afecte el tamaño del contenedor */
+}
