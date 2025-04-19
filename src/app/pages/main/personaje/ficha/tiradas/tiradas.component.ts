@@ -7,16 +7,18 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { BackendService } from '../../../../../services/backend.service';
 import { FuerzaComponent } from "./fuerza/fuerza.component";
-import { Carisma, Destreza, Inteligencia, Sabiduria } from '../../../../../models/HabilidadesModels';
 import { DestrezaComponent } from "./destreza/destreza.component";
-import { Constitucion } from '../../../../../models/DescripcionesModel';
 import { ConstitucionComponent } from "./constitucion/constitucion.component";
 import { InteligenciaComponent } from "./inteligencia/inteligencia.component";
 import { SabiduriaComponent } from "./sabiduria/sabiduria.component";
 import { CarismaComponent } from "./carisma/carisma.component";
-import {BASE_PATH, Fuerza, HabilidadesFuerzaService} from "adyd-api-client";
+import {
+  BASE_PATH, Constitucion, Fuerza, HabilidadesFuerzaService,
+  HabilidadesConstitucionService, HabilidadesDestrezaService,
+  HabilidadesCarismaService, HabilidadesInteligenciaService,
+  HabilidadesSabiduriaService, Destreza, Inteligencia, Sabiduria, Carisma
+} from "adyd-api-client";
 
 @Component({
     selector: 'app-tiradas',
@@ -27,6 +29,19 @@ import {BASE_PATH, Fuerza, HabilidadesFuerzaService} from "adyd-api-client";
     providers: [
       HabilidadesFuerzaService,
       { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      HabilidadesConstitucionService,
+      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      HabilidadesDestrezaService,
+      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      HabilidadesInteligenciaService,
+      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      HabilidadesSabiduriaService,
+      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      HabilidadesCarismaService,
+      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      HabilidadesConstitucionService,
+      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' }
+
     ]
 })
 export class TiradasComponent implements OnInit{
@@ -35,9 +50,13 @@ export class TiradasComponent implements OnInit{
 
   public componenteHabilidad =signal<'F'| 'D'| 'C'| 'CA'| 'S'| 'I'|''>('');
   private readonly fuerzaService = inject(HabilidadesFuerzaService);
+  private readonly destrezaService = inject(HabilidadesDestrezaService);
+  private readonly inteligensciaService = inject(HabilidadesInteligenciaService);
+  private readonly sabiduriaService = inject(HabilidadesSabiduriaService);
+  private readonly carismaService = inject(HabilidadesCarismaService);
+  private readonly constitucionService = inject(HabilidadesConstitucionService);
 
-  constructor(private readonly backend : BackendService,
-  ) {
+  constructor() {
   }
 
   @Input() personaje? : Personaje;
@@ -45,7 +64,7 @@ export class TiradasComponent implements OnInit{
   public clicked : boolean = false;
   public items : number[] = [];
   basket = [''];
-puntuaciones: any;
+  puntuaciones: any;
   public fuerza: number[] =[];
   public destreza : number[] = [];
   public fuerzaData? : Fuerza;
@@ -84,16 +103,13 @@ puntuaciones: any;
         event.previousIndex,
         event.currentIndex,
       );
-      this.fuerzaService.habilidadesFuerzaPuntuacionBaseGet(this.fuerza[0]).subscribe(response => {
-        this.fuerzaData = response;
-        this.componenteHabilidad.set('F');
-      });
+      this.showFuerza();
     }
   }
   }
 
   showFuerza() {
-    this.backend.getFuerza(this.fuerza[0]).subscribe(response => {
+    this.fuerzaService.habilidadesFuerzaPuntuacionBaseGet(this.fuerza[0]).subscribe(response => {
       this.fuerzaData = response;
       this.componenteHabilidad.set('F');
     });
@@ -111,16 +127,13 @@ puntuaciones: any;
         event.previousIndex,
         event.currentIndex,
       );
-      this.backend.getDestreza(this.destreza[0]).subscribe(response => {
-        this.destrezaData = response;
-        this.componenteHabilidad.set('D');
-      });
+      this.showDestreza()
     }
   }
   }
 
   showDestreza() {
-    this.backend.getDestreza(this.destreza[0]).subscribe(response => {
+    this.destrezaService.habilidadesDestrezaPuntuacionBaseGet(this.destreza[0]).subscribe(response => {
       this.destrezaData = response;
       this.componenteHabilidad.set('D');
     });
@@ -137,16 +150,13 @@ puntuaciones: any;
           event.previousIndex,
           event.currentIndex,
         );
-        this.backend.getConstitucion(this.constitucion[0]).subscribe(response => {
-          this.constituciondData = response;
-          this.componenteHabilidad.set('C');
-        });
+        this.showConstitucion()
       }
     }
   }
 
   public showConstitucion() {
-    this.backend.getConstitucion(this.constitucion[0]).subscribe(response => {
+    this.constitucionService.habilidadesConstitucionPuntuacionBaseGet(this.constitucion[0]).subscribe(response => {
       this.constituciondData = response;
       this.componenteHabilidad.set('C');
     });
@@ -163,10 +173,7 @@ puntuaciones: any;
           event.previousIndex,
           event.currentIndex,
         );
-        this.backend.getInteligencia(this.inteligencia[0]).subscribe(response => {
-          this.inteligenciaData = response;
-          this.componenteHabilidad.set('I');
-        });
+        this.showInteligencia();
       }
     }
   }
@@ -181,22 +188,19 @@ puntuaciones: any;
           event.previousIndex,
           event.currentIndex,
         );
-        this.backend.getSabiduria(this.sabiduria[0]).subscribe(response => {
-          this.sabiduriaData = response;
-          this.componenteHabilidad.set('S');
-        });
+        this.showSabiduria();
       }
     }
   }
 
   public showInteligencia() {
-    this.backend.getInteligencia(this.inteligencia[0]).subscribe(response => {
+    this.inteligensciaService.habilidadesInteligenciaPuntuacionBaseGet(this.inteligencia[0]).subscribe(response => {
       this.inteligenciaData = response;
       this.componenteHabilidad.set('I');
     });
   }
   public showSabiduria(){
-    this.backend.getSabiduria(this.sabiduria[0]).subscribe(response => {
+    this.sabiduriaService.habilidadesSabiduriaPuntuacionBaseGet(this.sabiduria[0]).subscribe(response => {
       this.sabiduriaData = response;
       this.componenteHabilidad.set('S');
     });
@@ -213,16 +217,13 @@ puntuaciones: any;
           event.previousIndex,
           event.currentIndex,
         );
-        this.backend.getCarisma(this.carisma[0]).subscribe(response => {
-          this.carismaData = response;
-          this.componenteHabilidad.set('CA');
-        });
+        this.showCarisma();
       }
     }
   }
 
   public showCarisma() {
-    this.backend.getCarisma(this.carisma[0]).subscribe(response => {
+    this.carismaService.habilidadesCarismaPuntuacionBaseGet(this.carisma[0]).subscribe(response => {
       this.carismaData = response;
       this.componenteHabilidad.set('CA');
     });

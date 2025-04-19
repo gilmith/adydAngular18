@@ -1,31 +1,33 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Carisma } from '../../../../../../models/HabilidadesModels';
-import { BackendService } from '../../../../../../services/backend.service';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import { PersonajeService } from '../../../service/personaje.service';
+import {BASE_PATH, Carisma, DescripcionesService} from "adyd-api-client";
 
 @Component({
     selector: 'app-carisma',
     imports: [],
     templateUrl: './carisma.component.html',
     styleUrl: './carisma.component.css',
-    standalone: true
+    standalone: true,
+  providers: [
+    DescripcionesService,
+    {provide: BASE_PATH, useValue: 'http://localhost:10004/api/bbdd'}
+  ]
 })
 export class CarismaComponent implements OnInit{
 
   @Input() data?: Carisma;
-
-  constructor(private readonly backend : BackendService,
-    private personajeService : PersonajeService
+  private readonly descripcionesService = inject(DescripcionesService);
+  constructor(private personajeService : PersonajeService
   ) {}
   public seguidores? : string;
   public lealtad? : string;
   public reaccion? : string;
 
   ngOnInit(): void {
-    this.backend.getDescripciones('Carisma').subscribe(response => {
-      this.seguidores = response.find(it => it.caracteristica ==="Seguidores")?.description;
-      this.lealtad = response.find(it => it.caracteristica === "lealtad")?.description;
-      this.reaccion = response.find(it => it.caracteristica === "reaccion")?.description;
+    this.descripcionesService.descripcionesSearchFindByHabilidadGet('Carisma').subscribe(response => {
+      this.seguidores = response.find(it => it.nombre ==="Seguidores")?.descripcion;
+      this.lealtad = response.find(it => it.nombre === "lealtad")?.descripcion;
+      this.reaccion = response.find(it => it.nombre === "reaccion")?.descripcion;
     });
     this.personajeService.setCarisma(this.data);
   }

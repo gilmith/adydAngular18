@@ -1,14 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Sabiduria } from '../../../../../../models/HabilidadesModels';
-import { BackendService } from '../../../../../../services/backend.service';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import { PersonajeService } from '../../../service/personaje.service';
+import {BASE_PATH, DescripcionesService, Sabiduria} from "adyd-api-client";
 
 @Component({
     selector: 'app-sabiduria',
     imports: [],
     templateUrl: './sabiduria.component.html',
     styleUrl: './sabiduria.component.css',
-    standalone: true
+    standalone: true,
+  providers: [
+    DescripcionesService,
+    {provide: BASE_PATH, useValue: 'http://localhost:10004/api/bbdd'}
+  ]
 })
 export class SabiduriaComponent implements OnInit{
   @Input() public data? : Sabiduria;
@@ -16,16 +19,17 @@ export class SabiduriaComponent implements OnInit{
   public bonificacionConjuros? : string;
   public fracaso? : string;
   public inmunidad? : string;
-  constructor(private readonly backend : BackendService,
+  private readonly descripcionesService = inject(DescripcionesService)
+  constructor(
     private personajeService : PersonajeService
   ) {}
 
   ngOnInit(): void {
-    this.backend.getDescripciones('Sabiduria').subscribe(response =>  {
-      this.defensa = response.find(it => it.caracteristica === "Ajuste defensa magica")?.description;
-      this.bonificacionConjuros = response.find(it => it.caracteristica === "Bonificacion de Conjuros")?.description;
-      this.fracaso = response.find(it => it.caracteristica === "Probabilidad de fracaso de conjuros")?.description;
-      this.inmunidad = response.find(it => it.caracteristica === "Inmunidad a conjuros")?.description;
+    this.descripcionesService.descripcionesSearchFindByHabilidadGet('Sabiduria').subscribe(response =>  {
+      this.defensa = response.find(it => it.nombre === "Ajuste defensa magica")?.descripcion;
+      this.bonificacionConjuros = response.find(it => it.nombre === "Bonificacion de Conjuros")?.descripcion;
+      this.fracaso = response.find(it => it.nombre === "Probabilidad de fracaso de conjuros")?.descripcion;
+      this.inmunidad = response.find(it => it.nombre === "Inmunidad a conjuros")?.descripcion;
     });
     this.personajeService.setSabiduria(this.data);
   }

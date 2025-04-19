@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Inteligencia } from '../../../../../../models/HabilidadesModels';
-import { BackendService } from '../../../../../../services/backend.service';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import { PersonajeService } from '../../../service/personaje.service';
+import {DescripcionesService, Inteligencia} from "adyd-api-client";
 
 @Component({
     selector: 'app-inteligencia',
@@ -16,24 +15,25 @@ export class InteligenciaComponent implements OnInit{
   public idiomas? :string;
   public nivelConjuros? : string;
   public aprender? : string;
-  public maxConjuros? : string;
+  public maxConjuros? : string | undefined;
   public inmunidad? : string;
+  private readonly descripcionesService = inject(DescripcionesService);
 
-  constructor(private readonly backend :BackendService,
+  constructor(
     private personajeService : PersonajeService
   ) {}
 
 
   ngOnInit(): void {
-    this.backend.getDescripciones('Inteligencia').subscribe(response => {
-      this.idiomas = response.find(it => it.caracteristica === "Numero de lenguajes")?.description;
-      this.nivelConjuros = response.find(it => it.caracteristica === "Nivel de conjuros")?.description;
-      this.aprender = response.find(it => it.caracteristica === "Oportunidad de aprender conjuros")?.description;
-      this.maxConjuros = response.find(it => it.caracteristica === "Numero maximo de conjuros")?.description;
-      this.inmunidad = response.find(it => it.caracteristica === "Inmunidad de conjuros")?.description;
+    this.descripcionesService.descripcionesSearchFindByHabilidadGet('Inteligencia').subscribe(response => {
+      this.idiomas = response.find(it => it.nombre === "Numero de lenguajes")?.descripcion;
+      this.nivelConjuros = response.find(it => it.nombre === "Nivel de conjuros")?.descripcion;
+      this.aprender = response.find(it => it.nombre === "Oportunidad de aprender conjuros")?.descripcion;
+      this.maxConjuros = response.find(it => it.nombre === "Numero maximo de conjuros")?.descripcion;
+      this.inmunidad = response.find(it => it.nombre === "Inmunidad de conjuros")?.descripcion;
     });
     this.personajeService.setInteligencia(this.data);
-    
+
   }
 
 }

@@ -1,8 +1,4 @@
-import { CategoriaSimpleElement } from "./CategoriaModel";
-import { Constitucion } from "./DescripcionesModel";
-import { Carisma, Destreza, Inteligencia, Sabiduria } from "./HabilidadesModels";
-import { Raza } from "./RazasModel";
-import {Fuerza} from "adyd-api-client";
+import {Fuerza, Destreza, Carisma, Sabiduria, Inteligencia, Category, Raza, Constitucion} from "adyd-api-client";
 export interface Personaje {
     fuerza: Fuerza;
     destreza : Destreza;
@@ -13,9 +9,9 @@ export interface Personaje {
     usuario : string;
     raza: Raza;
     nombre : string;
-    categoria: CategoriaSimpleElement;
+    categoria: Category;
     alineamiento : string;
-    sexo: Sexo;
+    sexo: Sexo.TBC;
     edad: number;
     colorPelo: string;
     altura: number;

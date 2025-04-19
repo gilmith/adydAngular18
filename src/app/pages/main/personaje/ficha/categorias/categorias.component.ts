@@ -1,36 +1,39 @@
 import { AfterViewInit, Component, ElementRef, inject, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { PersonajeService } from '../../service/personaje.service';
-import { Categoria, CategoriaSimpleElement } from '../../../../../models/CategoriaModel';
-import { BackendService } from '../../../../../services/backend.service';
+import {CategoriaService} from "adyd-api-client/api/categoria.service";
+import {BASE_PATH, Category} from "adyd-api-client";
 
 @Component({
     selector: 'app-categorias',
     imports: [],
     templateUrl: './categorias.component.html',
     styleUrl: './categorias.component.css',
-    standalone: true
+    standalone: true,
+   providers : [
+     CategoriaService,
+     {provide: BASE_PATH, useValue: 'http://localhost:10004/api/bbdd'},
+   ]
 })
 export class CategoriasComponent implements OnInit, AfterViewInit{
 
-    public arrayCategoriasDisponibles? : CategoriaSimpleElement[];
     public isBorderActive: boolean = false;
-    public categoria? : CategoriaSimpleElement;
     @ViewChild('#carouselCategorias') carouselCategoria?: ElementRef;
     private personajeService = inject(PersonajeService);
-    private readonly backendService = inject(BackendService);
+    private readonly categoriaService = inject(CategoriaService);
+    private arrayCategoriasDisponibles?: Array<Array<Category>>;
 
     constructor(){}
 
     ngOnInit(): void {
-        /*this.backendService.getCategorias(this.personajeService.personaje.fuerza.id,
-            this.personajeService.personaje.destreza.puntuacionBase,
-            this.personajeService.personaje.carisma.puntuacionBase,
-            this.personajeService.personaje.constitucion.puntuacionBase,
-            this.personajeService.personaje.inteligencia.puntuacionBase,
-            this.personajeService.personaje.sabiduria.puntuacionBase
+        this.categoriaService.findMinimo(this.personajeService.personaje.fuerza.id,
+          this.personajeService.personaje.inteligencia.id,
+          this.personajeService.personaje.destreza.id,
+          this.personajeService.personaje.constitucion.id,
+          this.personajeService.personaje.sabiduria.id,
+          this.personajeService.personaje.carisma.id
           ).subscribe(response => {
-            this.arrayCategoriasDisponibles = response;
-          });*/
+            this.arrayCategoriasDisponibles = response
+          });
     }
 
     toogleBorder() {

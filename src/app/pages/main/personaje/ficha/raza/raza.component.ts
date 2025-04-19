@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
 import { PersonajeService } from '../../service/personaje.service';
-import { BackendService } from '../../../../../services/backend.service';
-import { Raza } from '../../../../../models/RazasModel';
+import {Raza, RazaService} from 'adyd-api-client';
 
 @Component({
     selector: 'app-raza',
@@ -17,27 +16,26 @@ export class RazaComponent implements OnInit, AfterViewInit{
   public isBorderActive: boolean = false;
   public raza? : Raza;
   @ViewChild('#carouselRazas') carousel?: ElementRef;
-
+  private readonly razasService = inject(RazaService);
   constructor(private personajeService: PersonajeService,
-    private readonly backend : BackendService
   ) {}
 
   ngOnInit(): void {
-    /*this.backend.getRazas(this.personajeService.personaje.fuerza.id,
-      this.personajeService.personaje.destreza.puntuacionBase,
-      this.personajeService.personaje.carisma.puntuacionBase,
-      this.personajeService.personaje.constitucion.puntuacionBase,
-      this.personajeService.personaje.inteligencia.puntuacionBase,
-      this.personajeService.personaje.sabiduria.puntuacionBase
+    this.razasService.findRazaMinimo(this.personajeService.personaje.fuerza.id,
+      this.personajeService.personaje.destreza.id,
+      this.personajeService.personaje.carisma.id,
+      this.personajeService.personaje.constitucion.id,
+      this.personajeService.personaje.inteligencia.id,
+      this.personajeService.personaje.sabiduria.id
     ).subscribe(response => {
       this.arrayRazasDisponibles = response;
-    });*/
+    });
   }
 
   toogleBorder() {
     this.isBorderActive = !this.isBorderActive;
     if(!this.personajeService.personaje.raza && this.arrayRazasDisponibles){
-      this.personajeService.personaje.raza = this.arrayRazasDisponibles?.[0];
+    //  this.personajeService.personaje.raza = this.arrayRazasDisponibles?.[0];
     }
   }
 

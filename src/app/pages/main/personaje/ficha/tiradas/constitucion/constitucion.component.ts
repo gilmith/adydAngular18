@@ -1,14 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Constitucion } from '../../../../../../models/DescripcionesModel';
-import { BackendService } from '../../../../../../services/backend.service';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import { PersonajeService } from '../../../service/personaje.service';
+import {BASE_PATH, Constitucion, DescripcionesService} from "adyd-api-client";
 
 @Component({
     selector: 'app-constitucion',
     imports: [],
     templateUrl: './constitucion.component.html',
     styleUrl: './constitucion.component.css',
-    standalone: true
+    standalone: true,
+  providers: [
+    DescripcionesService,
+    {provide: BASE_PATH, useValue: 'http://localhost:10004/api/bbdd'}
+  ]
 })
 export class ConstitucionComponent implements OnInit{
 
@@ -19,17 +22,18 @@ export class ConstitucionComponent implements OnInit{
   public resureccion? : string;
   public veneno? : string;
   public regeneracion? : string;
-  constructor(private readonly backend : BackendService,
-    private personajeService : PersonajeService
-  ) {}
+  private readonly descripcionesService = inject(DescripcionesService);
+
+
+  constructor(private personajeService : PersonajeService) {}
 
   ngOnInit(): void {
-    this.backend.getDescripciones('Constitucion').subscribe(response => {
-      this.ajusteGolpe = response.find(it => it.caracteristica === "Ajuste Punto de Golpe")?.description;
-      this.shock = response.find(it => it.caracteristica === "Shock de Sistema")?.description;
-      this.resureccion = response.find(it => it.caracteristica  === "Superviviencia a la resureccion")?.description;
-      this.veneno = response.find(it => it.caracteristica === "Proteccion contra veneno")?.description;
-      this.regeneracion = response.find(it => it.caracteristica === "Regeneracion")?.description;
+    this.descripcionesService.descripcionesSearchFindByHabilidadGet('Constitucion').subscribe(responseDescription => {
+      this.ajusteGolpe = responseDescription.find(it => it.nombre === "Ajuste Punto de Golpe")?.descripcion;
+      this.shock = responseDescription.find(it => it.nombre === "Shock de Sistema")?.descripcion;
+      this.resureccion = responseDescription.find(it => it.nombre  === "Superviviencia a la resureccion")?.descripcion;
+      this.veneno = responseDescription.find(it => it.nombre === "Proteccion contra veneno")?.descripcion;
+      this.regeneracion = responseDescription.find(it => it.nombre === "Regeneracion")?.descripcion;
     });
     this.personajeService.setConstitucion(this.data);
   }

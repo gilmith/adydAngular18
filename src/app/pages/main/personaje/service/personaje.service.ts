@@ -1,6 +1,6 @@
-import { Injectable, signal } from '@angular/core';
-import { Personaje, Sexo } from '../../../../models/personaje';
-import {Fuerza} from "adyd-api-client";
+import {Injectable, signal} from '@angular/core';
+import {Personaje, Sexo} from '../../../../models/personaje';
+import {Carisma, Constitucion, Destreza, Fuerza, Inteligencia, Sabiduria} from "adyd-api-client";
 
 
 @Injectable()
@@ -9,111 +9,95 @@ export class PersonajeService {
   public datosCargados = signal(false);
 
   public personaje : Personaje = {
-    fuerza: {
-      id: "",
-      probimpacto: 0,
-      ajusteDano: 0,
-      pesoTranspor: 0,
-      pesoMaximo: 0,
-      abrirPuertas: '',
-      doblarBarras: 0,
-    },
-    destreza: {
-      puntuacionBase: 0,
-      reaccion: 0,
-      proyectil: 0,
-      defensa: 0,
-    },
+    alineamiento: "",
+    altura: 0,
     carisma: {
-      puntuacionBase: 0,
+      id: 0,
       maxseguidores: 0,
       lealtad: 0,
-      reaccion: 0,
+      reaccion: 0
     },
+    categoria: {
+      id: 0,
+      nombre: '',
+      dadoGolpe: 0,
+      puntosPericias: 0,
+      descripcion: ''
+    },
+    colorPelo: "",
     constitucion: {
-      puntuacionBase: 0,
+      id: 0,
       ajusteGolpe: 0,
       colapso: 0,
       resurreccion: 0,
       resistenciaVeneno: 0,
       regeneracion: ''
     },
-    sabiduria: {
-      puntuacionBase: 0,
-      defensa: 0,
-      bonusConjuros: null,
-      fracasoConjuro: 0,
+    destreza: {
+      id: 0,
+      reaccion: 0,
+      proyectil: 0,
+      defensa: 0
+    },
+    edad: 0,
+    fuerza: {
+      id: 0,
+      probimpacto: 0,
+      ajusteDano: 0,
+      pesoTranspor: 0,
+      abrirPuertas: '',
+      doblarBarras: 0
     },
     inteligencia: {
-      puntuacionBase: 0,
+      id: 0,
       idiomas: 0,
-      nivelConjuro: 0,
-      nuevosConjuros: 0,
-      maxConjuros: 0,
-      ilusiones: null,
+      ilusiones: 0,
+      maxConjuros: 0
     },
-    usuario: '',
-    sexo: Sexo.TBC,
-    colorPelo: '',
-    altura: 0,
-    edad: 0,
-    nombre: '',
+    nombre: "",
     raza: {
-      nombre: '',
-      minimoFuerza: 0,
-      minimoDestreza: 0,
-      minimoConstitucion: 0,
-      minimoInteligencia: 0,
-      minimoSabiduria: 0,
-      minimoCarisma: 0,
       id: 0,
-      modifConstitucion: null,
-      modifCarisma: null,
-      modifFuerza: null,
-      modifDestreza: null,
-      modifSabiduria: null,
-      modifInteligencia: null,
-      descripcion: '',
-      habilidadesEspeciales: null,
+      description: '',
+      nombre : ''
     },
-    categoria: {
-      nombre: '',
+    sabiduria: {
       id: 0,
-      dadoGolpe: 0,
-      puntosPericias: 0,
-      puntosPericiasNoArmas: 0,
-      descripcion: ''
+      defensa: 0,
+      bonusConjuros: 0,
+      fracasoConjuro: 0
     },
-    alineamiento : ''
+    sexo: Sexo.TBC,
+    usuario: ""
+
   }
 
 
-  setSabiduria(data: import("../../../../models/HabilidadesModels").Sabiduria | undefined) {
+  setSabiduria(data: Sabiduria| undefined) {
     if(data){
       this.personaje.sabiduria = data;
     }
     this.cargados()
   }
 
-  setInteligencia(data: import("../../../../models/HabilidadesModels").Inteligencia | undefined) {
+  setInteligencia(data: Inteligencia| undefined) {
     if(data){
       this.personaje.inteligencia = data;
     }
     this.cargados()
   }
-  setConstitucion(data: import("../../../../models/DescripcionesModel").Constitucion | undefined) {
+  setConstitucion(data: Constitucion | undefined) {
     if(data){
       this.personaje.constitucion = data;
     }
     this.cargados()
   }
-  setCarisma(data: import("../../../../models/HabilidadesModels").Carisma | undefined) {
+  setCarisma(data: Carisma | undefined) {
     if(data){
       this.personaje.carisma = data;
     }
     this.cargados()
   }
-  setDestreza(data: import("../../../../models/HabilidadesModels").Destreza | undefined) {
+  setDestreza(data: Destreza | undefined) {
     if(data){
       this.personaje.destreza = data;
     }
@@ -127,12 +111,12 @@ export class PersonajeService {
   }
 
   cargados() {
-    this.datosCargados.update(() => (this.personaje.carisma.puntuacionBase !== 0
-      && this.personaje.constitucion.puntuacionBase !== 0
-      && this.personaje.destreza.puntuacionBase !== 0
-      && this.personaje.fuerza.id !== "0"
-      && this.personaje.inteligencia.puntuacionBase !== 0
-      && this.personaje.sabiduria.puntuacionBase !== 0)
+    this.datosCargados.update(() => (this.personaje.carisma.id !== 0
+      && this.personaje.constitucion.id !== 0
+      && this.personaje.destreza.id !== 0
+      && this.personaje.fuerza.id !== 0
+      && this.personaje.inteligencia.id !== 0
+      && this.personaje.sabiduria.id !== 0)
     );
   }
 

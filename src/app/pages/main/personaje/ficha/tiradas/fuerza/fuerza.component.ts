@@ -1,7 +1,6 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
-import { BackendService } from '../../../../../../services/backend.service';
 import { PersonajeService } from '../../../service/personaje.service';
-import { Fuerza, HabilidadesFuerzaService } from 'adyd-api-client'
+import {DescripcionesService, Fuerza } from 'adyd-api-client'
 import {BASE_PATH} from "adyd-api-client";
 
 @Component({
@@ -9,7 +8,11 @@ import {BASE_PATH} from "adyd-api-client";
     imports: [],
     templateUrl: './fuerza.component.html',
     styleUrl: './fuerza.component.css',
-    standalone:true
+    standalone:true,
+    providers: [
+      DescripcionesService,
+      {provide: BASE_PATH, useValue: 'http://localhost:10004/api/bbdd/'},
+    ]
 })
 export class FuerzaComponent implements OnInit {
 
@@ -20,19 +23,21 @@ export class FuerzaComponent implements OnInit {
   public esfuerzoMax? : string;
   public abrirPuertas? : string;
   public doblar? : string;
-  constructor(private readonly backend: BackendService,
-    private personajeService : PersonajeService
+
+  private readonly descripcionesService = inject(DescripcionesService);
+
+  constructor(private personajeService : PersonajeService
   ) {}
 
 
   ngOnInit(): void {
-    this.backend.getDescripciones('Fuerza').subscribe(response => {
-      this.probImpacto = response.find(it => it.caracteristica === 'Probabilidad Golpe')?.description;
-      this.ajusteDano = response.find(it => it.caracteristica === "Ajuste Daño")?.description;
-      this.pesoAuth = response.find(it => it.caracteristica ==="Peso autorizado")?.description;
-      this.esfuerzoMax = response.find(it => it.caracteristica === "Esfuerzo maximo")?.description;
-      this.abrirPuertas = response.find(it => it.caracteristica === "Abrir Puertas")?.description;
-      this.doblar = response.find(it => it.caracteristica === "Doblar barras/Alzar Puertas")?.description;
+    this.descripcionesService.descripcionesSearchFindByHabilidadGet('Fuerza').subscribe(responseDescripcion => {
+      this.probImpacto = responseDescripcion.find(it => it.nombre === 'Probabilidad Golpe')?.descripcion;
+      this.ajusteDano = responseDescripcion.find(it => it.nombre === "Ajuste Daño")?.descripcion;
+      this.pesoAuth = responseDescripcion.find(it => it.nombre ==="Peso autorizado")?.descripcion;
+      this.esfuerzoMax = responseDescripcion.find(it => it.nombre === "Esfuerzo maximo")?.descripcion;
+      this.abrirPuertas = responseDescripcion.find(it => it.nombre === "Abrir Puertas")?.descripcion;
+      this.doblar = responseDescripcion.find(it => it.nombre === "Doblar barras/Alzar Puertas")?.descripcion;
     })
     this.personajeService.setFuerza(this.data);
   }
