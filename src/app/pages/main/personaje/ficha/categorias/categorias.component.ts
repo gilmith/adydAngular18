@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, inject, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { PersonajeService } from '../../service/personaje.service';
-import {CategoriaService} from "adyd-api-client/api/categoria.service";
-import {BASE_PATH, Category} from "adyd-api-client";
+import {CategoriaService} from "@gilmith/adyd-api-client";
+import {BASE_PATH, Category} from "@gilmith/adyd-api-client";
 
 @Component({
     selector: 'app-categorias',
@@ -11,7 +11,7 @@ import {BASE_PATH, Category} from "adyd-api-client";
     standalone: true,
    providers : [
      CategoriaService,
-     {provide: BASE_PATH, useValue: 'http://localhost:10004/api/bbdd'},
+     {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'},
    ]
 })
 export class CategoriasComponent implements OnInit, AfterViewInit{
@@ -20,7 +20,7 @@ export class CategoriasComponent implements OnInit, AfterViewInit{
     @ViewChild('#carouselCategorias') carouselCategoria?: ElementRef;
     private personajeService = inject(PersonajeService);
     private readonly categoriaService = inject(CategoriaService);
-    private arrayCategoriasDisponibles?: Array<Array<Category>>;
+    public arrayCategoriasDisponibles?: Array<Category>;
 
     constructor(){}
 

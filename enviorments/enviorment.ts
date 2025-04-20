@@ -1,4 +1,4 @@
-import {BASE_PATH} from "adyd-api-client/variables";
+import {BASE_PATH} from "@gilmith/adyd-api-client";
 
 export const environment = {
   production: false,

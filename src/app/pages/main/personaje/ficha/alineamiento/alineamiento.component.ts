@@ -1,20 +1,24 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { BackendService } from '../../../../../services/backend.service';
-import { Alineamientoe } from '../../../../../models/AlineamientoModel';
 import { PersonajeService } from '../../service/personaje.service';
-import {CommonModule, NgClass} from "@angular/common";
+import {CommonModule} from "@angular/common";
+import {Alignment, AlineamientoService, BASE_PATH} from "@gilmith/adyd-api-client";
+
 
 @Component({
   selector: 'app-alineamiento',
   imports: [CommonModule],
   templateUrl: './alineamiento.component.html',
   styleUrl: './alineamiento.component.css',
+  providers:[
+    AlineamientoService,
+    {provide: BASE_PATH, useValue:'https://localhost:10004/api/bbdd'},
+  ]
 })
 export class AlineamientoComponent implements OnInit{
 
 
-  private backend = inject(BackendService);
-  public alineamientos : Alineamientoe[] = [];
+  private alineamientoService = inject(AlineamientoService);
+  public alineamientos: Alignment[] = [];
   public personaje = inject(PersonajeService);
   public alineamientoSeleccionado?: number;
 
@@ -22,13 +26,13 @@ export class AlineamientoComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.backend.getAlinemaientos().subscribe(response => {
+    this.alineamientoService.findAllAlignments().subscribe(response => {
       this.alineamientos = response;
     })
 
   }
 
-  dividirEnFilas(array: Alineamientoe[], elementosPorFila: number): any[][] {
+  dividirEnFilas(array: Alignment[], elementosPorFila: number): any[][] {
     const filas = [];
     for (let i = 0; i < array.length; i += elementosPorFila) {
       filas.push(array.slice(i, i + elementosPorFila));

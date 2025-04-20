@@ -18,7 +18,7 @@ import {
   HabilidadesConstitucionService, HabilidadesDestrezaService,
   HabilidadesCarismaService, HabilidadesInteligenciaService,
   HabilidadesSabiduriaService, Destreza, Inteligencia, Sabiduria, Carisma
-} from "adyd-api-client";
+} from "@gilmith/adyd-api-client";
 
 @Component({
     selector: 'app-tiradas',

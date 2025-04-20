@@ -1,6 +1,6 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import { PersonajeService } from '../../../service/personaje.service';
-import {BASE_PATH, Carisma, DescripcionesService} from "adyd-api-client";
+import {BASE_PATH, Carisma, DescripcionesService} from "@gilmith/adyd-api-client";
 
 @Component({
     selector: 'app-carisma',
@@ -10,7 +10,7 @@ import {BASE_PATH, Carisma, DescripcionesService} from "adyd-api-client";
     standalone: true,
   providers: [
     DescripcionesService,
-    {provide: BASE_PATH, useValue: 'http://localhost:10004/api/bbdd'}
+    {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'}
   ]
 })
 export class CarismaComponent implements OnInit{

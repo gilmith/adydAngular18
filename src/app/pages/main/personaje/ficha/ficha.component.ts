@@ -6,13 +6,12 @@ import { RazaComponent } from "./raza/raza.component";
 import { PersonajeService } from '../service/personaje.service';
 import { CategoriasComponent } from "./categorias/categorias.component";
 import { AlineamientoComponent } from './alineamiento/alineamiento.component';
-import { BackendService } from '../../../../services/backend.service';
 import {DatosJugadorComponent} from "./datos-jugador/datos-jugador.component";
 
 @Component({
     selector: 'app-ficha',
     imports: [CommonModule, TiradasComponent, RazaComponent, CategoriasComponent, AlineamientoComponent, DatosJugadorComponent],
-    providers: [PersonajeService, BackendService],
+    providers: [PersonajeService],
     templateUrl: './ficha.component.html',
     styleUrl: './ficha.component.css',
     standalone: true

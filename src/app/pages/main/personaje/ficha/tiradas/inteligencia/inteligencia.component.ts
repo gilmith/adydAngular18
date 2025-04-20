@@ -1,13 +1,17 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import { PersonajeService } from '../../../service/personaje.service';
-import {DescripcionesService, Inteligencia} from "adyd-api-client";
+import {BASE_PATH, DescripcionesService, Inteligencia} from "@gilmith/adyd-api-client";
 
 @Component({
     selector: 'app-inteligencia',
     imports: [],
     templateUrl: './inteligencia.component.html',
     styleUrl: './inteligencia.component.css',
-    standalone: true
+    standalone: true,
+    providers: [
+      DescripcionesService,
+      {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'},
+    ]
 })
 export class InteligenciaComponent implements OnInit{
 

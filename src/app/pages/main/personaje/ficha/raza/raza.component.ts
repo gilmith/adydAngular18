@@ -1,13 +1,17 @@
 import {AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
 import { PersonajeService } from '../../service/personaje.service';
-import {Raza, RazaService} from 'adyd-api-client';
+import {BASE_PATH, Raza, RazaService} from "@gilmith/adyd-api-client";
 
 @Component({
     selector: 'app-raza',
     imports: [],
     templateUrl: './raza.component.html',
     styleUrl: './raza.component.css',
-    standalone: true
+    standalone: true,
+    providers: [
+      RazaService,
+      {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'}
+    ]
 })
 export class RazaComponent implements OnInit, AfterViewInit{
 
@@ -35,7 +39,7 @@ export class RazaComponent implements OnInit, AfterViewInit{
   toogleBorder() {
     this.isBorderActive = !this.isBorderActive;
     if(!this.personajeService.personaje.raza && this.arrayRazasDisponibles){
-    //  this.personajeService.personaje.raza = this.arrayRazasDisponibles?.[0];
+      this.personajeService.personaje.raza = this.arrayRazasDisponibles?.[0];
     }
   }
 

@@ -27,7 +27,7 @@
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0",
-    "adyd-api-client" : "1.0.10"
+    "@gilmith/adyd-api-client" : "1.0.4"
 
   },
   "devDependencies": {

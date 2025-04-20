@@ -1,5 +1,5 @@
 import {Component, inject, Input,  OnInit} from '@angular/core';
-import {BASE_PATH, DescripcionesService, Destreza} from "adyd-api-client";
+import {BASE_PATH, DescripcionesService, Destreza} from "@gilmith/adyd-api-client";
 import {PersonajeService} from "../../../service/personaje.service";
 
 @Component({
@@ -10,7 +10,7 @@ import {PersonajeService} from "../../../service/personaje.service";
     standalone: true,
   providers:[
     DescripcionesService,
-    { provide: BASE_PATH, useValue: 'https://localhost:10004'}
+    { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'}
   ]
 })
 export class DestrezaComponent implements OnInit{

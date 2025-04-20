@@ -1,6 +1,6 @@
 import {Injectable, signal} from '@angular/core';
 import {Personaje, Sexo} from '../../../../models/personaje';
-import {Carisma, Constitucion, Destreza, Fuerza, Inteligencia, Sabiduria} from "adyd-api-client";
+import {Carisma, Constitucion, Destreza, Fuerza, Inteligencia, Sabiduria} from "@gilmith/adyd-api-client";
 
 
 @Injectable()

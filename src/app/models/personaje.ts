@@ -1,4 +1,4 @@
-import {Fuerza, Destreza, Carisma, Sabiduria, Inteligencia, Category, Raza, Constitucion} from "adyd-api-client";
+import {Fuerza, Destreza, Carisma, Sabiduria, Inteligencia, Category, Raza, Constitucion} from "@gilmith/adyd-api-client";
 export interface Personaje {
     fuerza: Fuerza;
     destreza : Destreza;
