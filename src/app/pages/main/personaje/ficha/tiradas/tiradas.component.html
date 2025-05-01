@@ -1,15 +1,15 @@
 
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
       <div cdkDropListGroup>
         <div class="row mt-3">
             <div class="col-sm-12 col-md-6">
-                <h2>Puntuaciones</h2>
+                <h2>Tiradas</h2>
                 <div
                   cdkDropList
                   [cdkDropListData]="items"
                   class="elementosLista mt-2"
-                  cdkDropListSortingDisabled                  
+                  cdkDropListSortingDisabled
                   (cdkDropListDropped)="drop($event)">
                   @for (item of items; track item) {
                     <div class="example-box" cdkDrag>{{item}}</div>
@@ -19,8 +19,8 @@
                   <button class="btn btn-primary" (click)="reroll()">Volver a tirar</button>
                 </div>
               </div>
-            
-              <div class="col-sm-12 col-md-6">
+
+            <div class="col-sm-12 col-md-6">
                 <h2>Habilidades</h2>
                 <div class="container">
                   <div class="row mb-1">
@@ -38,7 +38,7 @@
                       </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                      <h3>Destreza</h3>
+                      <h4>Destreza</h4>
                       <div
                         cdkDropList
                         [cdkDropListData]="destreza"
@@ -53,7 +53,7 @@
                   </div>
                   <div class="row mb-1">
                     <div class="col-sm-12 col-md-6">
-                      <h3>Constitucion</h3>
+                      <h4>Constitucion</h4>
                       <div
                         cdkDropList
                         [cdkDropListData]="constitucion"
@@ -66,7 +66,7 @@
                       </div>
                     </div>
                    <div class="col-sm-12 col-md-6">
-                      <h3>Inteligencia</h3>
+                      <h4>Inteligencia</h4>
                       <div
                         cdkDropList
                         [cdkDropListData]="inteligencia"
@@ -81,7 +81,7 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-12 col-md-6">
-                      <h3>Sabiduria</h3>
+                      <h4>Sabiduria</h4>
                       <div
                         cdkDropList
                         [cdkDropListData]="sabiduria"
@@ -94,7 +94,7 @@
                       </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                      <h3>Carisma</h3>
+                      <h4>Carisma</h4>
                       <div
                         cdkDropList
                         [cdkDropListData]="carisma"
@@ -106,10 +106,10 @@
                         }
                       </div>
                     </div>
-                  </div> 
+                  </div>
                 </div>
               </div>
-        </div>    
+        </div>
       </div>
     </div>
     <div class="row mt-2">
@@ -139,5 +139,5 @@
         }
       </div>
     </div>
-    
-  </div> 
+
+  </div>
