@@ -19,7 +19,7 @@ export interface Personaje {
 
 }
 export enum Sexo {
-  'Masculino',
-  'Femenino',
-  'TBC'
+  'Masculino' = 'Masculino',
+  'Femenino' = "Femenino",
+  'TBC' = "TBC",
 }

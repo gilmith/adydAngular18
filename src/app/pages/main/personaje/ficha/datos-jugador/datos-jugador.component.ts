@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {PersonajeService} from "../../service/personaje.service";
+import {Sexo} from "../../../../../models/personaje";
 
 @Component({
   selector: 'app-datosjugador',
@@ -14,10 +15,12 @@ export class DatosJugadorComponent {
 
   private personajeService = inject(PersonajeService);
   public datosJugador: FormGroup;
+  public sexos: any[] = Object.keys(Sexo);
 
   constructor(private formBuilder: FormBuilder) {
     this.datosJugador = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10), Validators.pattern("^[^0-9]+$")]],
+      nombreJugadpr: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10), Validators.pattern("^[^0-9]+$")]],
       sexo: ['', Validators.required],
       edad: ['', [Validators.required, Validators.pattern("!/^\d+$/")]],
       altura: ['', [Validators.required, Validators.pattern("!/^\d+$/")]],
