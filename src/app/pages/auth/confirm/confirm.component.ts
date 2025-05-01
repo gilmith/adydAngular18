@@ -3,11 +3,10 @@ import { ActivatedRoute, Route, RouterModule } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-confirm',
-  standalone: true,
-  imports: [RouterModule],
-  templateUrl: './confirm.component.html',
-  styleUrl: './confirm.component.css'
+    selector: 'app-confirm',
+    imports: [RouterModule],
+    templateUrl: './confirm.component.html',
+    styleUrl: './confirm.component.css'
 })
 export class ConfirmComponent implements OnInit {
 

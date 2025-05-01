@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import {OffcanvasService} from "./offcanvas.service";
 
-import { OffcanvasService } from '../offcanvas.service';
 
 describe('OffcanvasService', () => {
   let service: OffcanvasService;

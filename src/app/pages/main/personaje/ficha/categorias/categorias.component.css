@@ -1,0 +1,9 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1); /* Cambia el ícono a negro */
+}
+
+.border-black {
+    border: 5px solid black; /* Borde negro de 5px */
+    box-sizing: border-box; /* Asegura que el borde no afecte el tamaño del contenedor */
+  }

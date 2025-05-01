@@ -4,11 +4,10 @@ import { RouterModule } from '@angular/router';
 import * as bootstrap from 'bootstrap';
 
 @Component({
-  selector: 'app-toast',
-  standalone: true,
-  imports: [RouterModule, CommonModule],
-  templateUrl: './toast.component.html',
-  styleUrl: './toast.component.css'
+    selector: 'app-toast',
+    imports: [RouterModule, CommonModule],
+    templateUrl: './toast.component.html',
+    styleUrl: './toast.component.css'
 })
 export class ToastComponent implements AfterViewInit {
 

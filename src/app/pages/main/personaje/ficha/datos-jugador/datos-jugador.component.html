@@ -1,0 +1,70 @@
+<div class="container mt-3">
+  <form [formGroup]="datosJugador" class="form-control" (ngSubmit)="guardar()">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <label for="nombrePersonaje" class="form-label">Nombre Personaje</label>
+        <input [ngClass]="{
+                    'is-valid':
+                      datosJugador.controls['nombre'].valid &&
+                      (datosJugador.controls['nombre'].touched ||
+                        datosJugador.controls['nombre'].dirty),
+                    'is-invalid':
+                      datosJugador.controls['nombre'].invalid &&
+                      (datosJugador.controls['nombre'].touched ||
+                        datosJugador.controls['nombre'].dirty)
+               }" class="form-control" formControlName="nombre"
+               id="nombrePersonaje"
+               type="text">
+          @if (datosJugador.controls['nombre'].invalid &&
+             (datosJugador.controls['nombre'].touched ||
+             datosJugador.controls['nombre'].dirty)) {
+            <div class="invalid-feedback">El nombre no puede contener numeros</div>
+           }
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label for="nombrePersonaje1" class="form-label">Nombre Jugador</label>
+        <input [ngClass]="{
+                    'is-valid':
+                      datosJugador.controls['nombre'].valid &&
+                      (datosJugador.controls['nombre'].touched ||
+                        datosJugador.controls['nombre'].dirty),
+                    'is-invalid':
+                      datosJugador.controls['nombre'].invalid &&
+                      (datosJugador.controls['nombre'].touched ||
+                        datosJugador.controls['nombre'].dirty)
+               }" class="form-control" formControlName="nombreJugadpr"
+               id="nombrePersonaje1"
+               type="text">
+        @if (datosJugador.controls['nombre'].invalid &&
+        (datosJugador.controls['nombre'].touched ||
+          datosJugador.controls['nombre'].dirty)) {
+          <div class="invalid-feedback">El nombre no puede contener numeros</div>
+        }
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <label for="sexo" class="form-label">Sexo</label>
+          <select id="sexo" formControlName="sexo" class="form-select">
+            @for (sexo of sexos; track $index) {
+              <option>{{ sexo }}</option>
+            }
+          </select>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <label for="altura" class="form-label">Altura</label>
+          <input id="altura" type="number" formControlName="altura" class="form-control"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <label for="edad" class="form-label">Edad</label>
+          <input id="edad" type="number" formControlName="edad" class="form-control"/>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <label for="colorPelo" class="form-label">Color de pelo</label>
+          <input type="text" id="colorPelo" formControlName="colorPelo" class="form-control">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
