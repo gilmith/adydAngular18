@@ -16,14 +16,13 @@
                     <a class="nav-link" [ngClass]="this.step() == 3 ? 'active' : 'disabled'" aria-disabled="true">Alineamiento</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" [ngClass]="this.step() == 4 ? 'active' : 'disabled'" aria-disabled="true">Datos Jugador</a>
+                    <a class="nav-link" [ngClass]="this.step() == 5 ? 'active' : 'disabled'" aria-disabled="true">Datos Jugador</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link"[ngClass]="this.step() == 5 ? 'active' : 'disabled'" aria-disabled="true">Hechizos</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" [ngClass]="this.step() == 6 ? 'active' : 'disabled'"  aria-disabled="true">Guardar</a>
-                  </li>
+                  @if (this.isMago()) {
+                    <li class="nav-item">
+                      <a class="nav-link"[ngClass]="this.step() == 4 ? 'active' : 'disabled'" aria-disabled="true">Hechizos</a>
+                    </li>
+                  }
                 </ul>
               </div>
             </div>

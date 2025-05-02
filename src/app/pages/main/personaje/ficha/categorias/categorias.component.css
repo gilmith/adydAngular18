@@ -3,7 +3,10 @@
   filter: invert(1); /* Cambia el ícono a negro */
 }
 
-.border-black {
-    border: 5px solid black; /* Borde negro de 5px */
+.border-red {
+    border: 5px solid red;
     box-sizing: border-box; /* Asegura que el borde no afecte el tamaño del contenedor */
   }
+.text-center {
+  text-align: center;
+}
