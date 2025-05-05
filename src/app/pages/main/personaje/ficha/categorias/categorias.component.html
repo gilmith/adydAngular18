@@ -1,53 +1,103 @@
 <div class="container">
-    <div id="carouselCategorias" class="carousel slide" data-bs-interval="0">
-        <div class="carousel-inner">
-            @for (categorias of arrayCategoriasDisponibles; track categorias.id; let indice = $index) {
-                @if(indice == 0) {
-                    <div class="carousel-item active" [class.border-black]="isBorderActive">
-                        <img src="../../../../../../assets/imagenes/categorias/{{categorias?.nombre}}.jpg" class="d-block w-100" alt="{{categorias?.nombre}}">
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                        <div class="container d-flex">
-                            <div class="row">
-                                <div class="col-12 justify-content-center">
-                                    <h5>{{categorias?.nombre}}</h5>
-                                    <p>{{categorias ?.descripcion}}</p>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                } @else {
-                <div class="carousel-item" [class.border-black]="isBorderActive">
-                    <img src="../../../../../../assets/imagenes/categorias/{{categorias?.nombre}}.jpg" class="d-block w-100" alt="{{categorias?.nombre}}">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                    <div class="container">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-12">
-                                <h5>{{categorias?.nombre}}</h5>
-                                <p>{{categorias?.descripcion}}</p>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                }
-            }
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategorias" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselCategorias" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Siguiente</span>
-        </button>
-      </div>
-      <div class="row mt-1">
-        <div class="col-12 d-flex justify-content-center align-items-center">
-            <button class="btn btn-primary" type="submit" (click)="toogleBorder()">seleccionar</button>
-        </div>
-      </div>
+  <div id="carouselCategorias" class="carousel slide" data-bs-interval="0">
+    <div class="carousel-inner">
+      @for (categorias of arrayCategoriasDisponibles; track categorias.id; let indice = $index) {
+        @if(indice == 0) {
+          <div class="carousel-item active" >
+            <div class="row">
+              <div class="col-1">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategorias" data-bs-slide="prev" (click)="this.findTiradaSalvacion(categorias.id)">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Anterior</span>
+                </button>
+              </div>
+              <div class="col-4" [class.border-red]="isBorderActive" matTooltip="haz doble click para seleccionar" (dblclick)="this.toogleBorder()">
+                <img src="../../../../../../assets/imagenes/categorias/{{categorias?.nombre}}.jpg" class="d-block w-100" alt="{{categorias?.nombre}}">
+              </div>
+              <div class="col-3">
+                <h5>{{categorias?.nombre | titlecase}}</h5>
+                <p>{{categorias?.descripcion}}</p>
+                <br>
+              </div>
+              <div class="col-3">
+                <h5>Tiradas de salvacion</h5>
+                <table class="table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="text-center">Paralizacion Veneno Muerte Magica</th>
+                      <th scope="col" class="text-center">Cetro Vara Varita</th>
+                      <th scope="col" class="text-center">Petrificacion Polimorfismo</th>
+                      <th scope="col" class="text-center">Arma Aliento</th>
+                      <th scope="col" class="text-center">Conjuro</th>
+                    </tr>
+                    <tr>
+                      <td class="text-center">{{paralizacionVenenoMuerteMagica}}</td>
+                      <td class="text-center">{{cetroVaraVarita}}</td>
+                      <td class="text-center">{{petrificacionPolimorfismo}}</td>
+                      <td class="text-center">{{armaAliento}}</td>
+                      <td class="text-center">{{conjuro}}</td>
+                    </tr>
+                  </thead>
 
+                </table>
+              </div>
+              <div class="col-1">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselCategorias" data-bs-slide="next" (click)="this.findTiradaSalvacion(categorias.id)">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Siguiente</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        } @else {
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-1">
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategorias" data-bs-slide="prev" (click)="this.findTiradaSalvacion(categorias.id)">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+            </div>
+            <div class="col-4" [class.border-red]="isBorderActive"  matTooltip="haz doble click para seleccionar" (dblclick)="this.toogleBorder()">
+              <img src="../../../../../../assets/imagenes/categorias/{{categorias?.nombre}}.jpg" class="d-block w-100" alt="{{categorias?.nombre}}">
+            </div>
+            <div class="col-3">
+              <h5>{{categorias?.nombre | titlecase }}</h5>
+              <p>{{categorias?.descripcion}}</p>
+              <br>
+            </div>
+            <div class="col-3">
+              <h5>tiradas de salvacion</h5>
+              <table class="table-hover">
+                <thead>
+                <tr>
+                  <th scope="col">Paralizacion Veneno Muerte Magica</th>
+                  <th scope="col">Cetro Vara Varita</th>
+                  <th scope="col">Petrificacion Polimorfismo</th>
+                  <th scope="col">Arma Aliento</th>
+                  <th scope="col">Conjuro</th>
+                </tr>
+                <tr>
+                  <td class="text-center">{{paralizacionVenenoMuerteMagica}}</td>
+                  <td class="text-center">{{cetroVaraVarita}}</td>
+                  <td class="text-center">{{petrificacionPolimorfismo}}</td>
+                  <td class="text-center">{{armaAliento}}</td>
+                  <td class="text-center">{{conjuro}}</td>
+                </tr>
+                </thead>
+
+              </table>
+            </div>
+            <div class="col-1">
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselCategorias" data-bs-slide="next" (click)="this.findTiradaSalvacion(categorias.id)">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        }
+      }
+    </div>
+  </div>
 </div>

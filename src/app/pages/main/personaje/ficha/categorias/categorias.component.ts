@@ -1,16 +1,23 @@
 import { AfterViewInit, Component, ElementRef, inject, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { PersonajeService } from '../../service/personaje.service';
-import {CategoriaService} from "@gilmith/adyd-api-client";
+import {CategoriaService, TiradasDeSalvacionService} from "@gilmith/adyd-api-client";
 import {BASE_PATH, Category} from "@gilmith/adyd-api-client";
+import {MatTooltip} from "@angular/material/tooltip";
+import {TitleCasePipe} from "@angular/common";
 
 @Component({
     selector: 'app-categorias',
-    imports: [],
+  imports: [
+    MatTooltip,
+    TitleCasePipe
+  ],
     templateUrl: './categorias.component.html',
     styleUrl: './categorias.component.css',
     standalone: true,
    providers : [
      CategoriaService,
+     {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'},
+     TiradasDeSalvacionService,
      {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'},
    ]
 })
@@ -21,6 +28,12 @@ export class CategoriasComponent implements OnInit, AfterViewInit{
     private personajeService = inject(PersonajeService);
     private readonly categoriaService = inject(CategoriaService);
     public arrayCategoriasDisponibles?: Array<Category>;
+    private tiradasSalvacionService = inject(TiradasDeSalvacionService);
+    public paralizacionVenenoMuerteMagica? : number;
+    public cetroVaraVarita? : number;
+    public armaAliento? : number;
+    public conjuro? : number;
+    public petrificacionPolimorfismo? : number;
 
     constructor(){}
 
@@ -33,6 +46,7 @@ export class CategoriasComponent implements OnInit, AfterViewInit{
           this.personajeService.personaje.carisma.id
           ).subscribe(response => {
             this.arrayCategoriasDisponibles = response
+            this.findTiradaSalvacion(response[0].id);
           });
     }
 
@@ -57,6 +71,14 @@ export class CategoriasComponent implements OnInit, AfterViewInit{
       }
 
 
-
-
+  public findTiradaSalvacion(idCategoria : number) {
+    this.tiradasSalvacionService.tiradassalvacionSearchFindByCategoriaNivelGet(1, 1)
+      .subscribe(response => {
+        this.armaAliento = response.armaAliento;
+        this.petrificacionPolimorfismo = response.petrificacionPolimorfismo;
+        this.cetroVaraVarita = response.cetroVaraVarita;
+        this.paralizacionVenenoMuerteMagica = response.petrificacionPolimorfismo;
+        this.conjuro = response.conjuro;
+        });
+  }
 }
