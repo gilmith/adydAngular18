@@ -45,13 +45,17 @@
                 @if(this.step() ==4){
                 <app-datosjugador/>
                 }
-                @if(this.showPrevious){
-                    <button type="submit" class="btn btn-primary mt-2" (click)="anterior()">anterior</button>
-                }
-                <button type="submit" class="btn btn-primary mt-2 ms-2" id="siguiente" [disabled]="!servicio.datosCargados()"  (click)="siguiente()">siguiente</button>
+              <div class="row justify-content-between">
+                  <div class="col-1">
+                  @if(this.showPrevious){
+                      <button type="submit" class="btn btn-primary mt-2" (click)="anterior()">anterior</button>
+                  }
+                  </div>
+                  <div class="col-1">
+                    <button type="submit" class="btn btn-primary mt-2 ms-2" id="siguiente" [disabled]="!servicio.datosCargados()"  (click)="siguiente()">siguiente</button>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
-
-
 </div>
