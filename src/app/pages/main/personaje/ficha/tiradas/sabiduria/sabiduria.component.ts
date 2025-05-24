@@ -1,6 +1,7 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import { PersonajeService } from '../../../service/personaje.service';
 import {BASE_PATH, DescripcionesService, Sabiduria} from "@gilmith/adyd-api-client";
+import {environment} from "../../../../../../../../enviorments/enviorment";
 
 @Component({
     selector: 'app-sabiduria',
@@ -10,7 +11,7 @@ import {BASE_PATH, DescripcionesService, Sabiduria} from "@gilmith/adyd-api-clie
     standalone: true,
   providers: [
     DescripcionesService,
-    {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'}
+    {provide: BASE_PATH, useValue: environment.BASE_PATH}
   ]
 })
 export class SabiduriaComponent implements OnInit{

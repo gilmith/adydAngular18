@@ -2,6 +2,7 @@ import {Component, inject, Input, OnInit} from '@angular/core';
 import { PersonajeService } from '../../../service/personaje.service';
 import {DescripcionesService, Fuerza } from "@gilmith/adyd-api-client";
 import {BASE_PATH} from "@gilmith/adyd-api-client";
+import {environment} from "../../../../../../../../enviorments/enviorment";
 
 @Component({
     selector: 'app-fuerza',
@@ -11,7 +12,7 @@ import {BASE_PATH} from "@gilmith/adyd-api-client";
     standalone:true,
     providers: [
       DescripcionesService,
-      {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'},
+      {provide: BASE_PATH, useValue: environment.BASE_PATH},
     ]
 })
 export class FuerzaComponent implements OnInit {

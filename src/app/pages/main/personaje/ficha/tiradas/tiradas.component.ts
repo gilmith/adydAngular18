@@ -19,6 +19,7 @@ import {
   HabilidadesCarismaService, HabilidadesInteligenciaService,
   HabilidadesSabiduriaService, Destreza, Inteligencia, Sabiduria, Carisma
 } from "@gilmith/adyd-api-client";
+import {environment} from "../../../../../../../enviorments/enviorment";
 
 @Component({
     selector: 'app-tiradas',
@@ -28,19 +29,19 @@ import {
     standalone: true,
     providers: [
       HabilidadesFuerzaService,
-      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      { provide: BASE_PATH, useValue: environment.BASE_PATH },
       HabilidadesConstitucionService,
-      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      { provide: BASE_PATH, useValue: environment.BASE_PATH },
       HabilidadesDestrezaService,
-      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      { provide: BASE_PATH, useValue: environment.BASE_PATH },
       HabilidadesInteligenciaService,
-      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      { provide: BASE_PATH, useValue: environment.BASE_PATH },
       HabilidadesSabiduriaService,
-      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      { provide: BASE_PATH, useValue: environment.BASE_PATH },
       HabilidadesCarismaService,
-      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' },
+      { provide: BASE_PATH, useValue: environment.BASE_PATH },
       HabilidadesConstitucionService,
-      { provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd' }
+      { provide: BASE_PATH, useValue: environment.BASE_PATH }
 
     ]
 })

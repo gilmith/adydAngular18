@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { PersonajeService } from '../../service/personaje.service';
 import {CommonModule} from "@angular/common";
 import {Alignment, AlineamientoService, BASE_PATH} from "@gilmith/adyd-api-client";
+import {environment} from "../../../../../../../enviorments/enviorment";
 
 
 @Component({
@@ -11,7 +12,7 @@ import {Alignment, AlineamientoService, BASE_PATH} from "@gilmith/adyd-api-clien
   styleUrl: './alineamiento.component.css',
   providers:[
     AlineamientoService,
-    {provide: BASE_PATH, useValue:'https://localhost:10004/api/bbdd'},
+    {provide: BASE_PATH, useValue:environment.BASE_PATH},
   ]
 })
 export class AlineamientoComponent implements OnInit{

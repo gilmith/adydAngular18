@@ -4,6 +4,7 @@ import {CategoriaService, TiradasDeSalvacionService} from "@gilmith/adyd-api-cli
 import {BASE_PATH, Category} from "@gilmith/adyd-api-client";
 import {MatTooltip} from "@angular/material/tooltip";
 import {TitleCasePipe} from "@angular/common";
+import {environment} from "../../../../../../../enviorments/enviorment";
 
 @Component({
     selector: 'app-categorias',
@@ -16,9 +17,9 @@ import {TitleCasePipe} from "@angular/common";
     standalone: true,
    providers : [
      CategoriaService,
-     {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'},
+     {provide: BASE_PATH, useValue: environment.BASE_PATH},
      TiradasDeSalvacionService,
-     {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'},
+     {provide: BASE_PATH, useValue: environment.BASE_PATH},
    ]
 })
 export class CategoriasComponent implements OnInit, AfterViewInit{

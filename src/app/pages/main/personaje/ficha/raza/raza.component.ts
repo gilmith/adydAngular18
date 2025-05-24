@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
 import { PersonajeService } from '../../service/personaje.service';
 import {BASE_PATH, Raza, RazaService} from "@gilmith/adyd-api-client";
+import {environment} from "../../../../../../../enviorments/enviorment";
 
 @Component({
     selector: 'app-raza',
@@ -10,7 +11,7 @@ import {BASE_PATH, Raza, RazaService} from "@gilmith/adyd-api-client";
     standalone: true,
     providers: [
       RazaService,
-      {provide: BASE_PATH, useValue: 'https://localhost:10004/api/bbdd'}
+      {provide: BASE_PATH, useValue: environment.BASE_PATH}
     ]
 })
 export class RazaComponent implements OnInit, AfterViewInit{
